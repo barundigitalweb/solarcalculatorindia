@@ -20,6 +20,15 @@ const {
 
 const siteUrl = 'https://solarcalculatorindia.com';
 
+// WebSite Schema for Google Site Name & Search Indexation
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Solar Calculator India",
+  "url": siteUrl,
+  "description": "Calculate rooftop solar capacity, PM Surya Ghar subsidy (up to ₹78,000), and monthly electricity bill savings across all Indian states."
+};
+
 // WebApplication Schema for Google Rich Snippets
 const webAppSchema = {
   "@context": "https://schema.org",
@@ -79,12 +88,17 @@ const faqSchema = faqList.length > 0 ? {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:site_name" content="Solar Calculator India" />
+    <meta property="og:image" content={`${siteUrl}/og-image.svg`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_IN" />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={canonicalUrl} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={`${siteUrl}/og-image.svg`} />
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -92,6 +106,7 @@ const faqSchema = faqList.length > 0 ? {
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
 
     <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(webAppSchema)} />
     {faqSchema && (
       <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />

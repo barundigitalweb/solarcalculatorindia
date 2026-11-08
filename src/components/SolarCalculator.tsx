@@ -185,13 +185,18 @@ export default function SolarCalculator({
       alert('Please enter a valid 10-digit Indian mobile number (starting with 6, 7, 8, or 9).');
       return;
     }
+    const cleanPincode = leadForm.pincode.trim();
+    if (cleanPincode && !/^[1-9][0-9]{5}$/.test(cleanPincode)) {
+      alert('Please enter a valid 6-digit Indian postal pincode.');
+      return;
+    }
 
     setIsSubmittingLead(true);
     const leadPayload = {
       name: leadForm.name.trim(),
       phone: cleanPhone,
       city: leadForm.city.trim(),
-      pincode: leadForm.pincode.trim(),
+      pincode: cleanPincode,
       systemSizeKw: metrics.systemSizeKw,
       state: currentState.name,
       discom: currentState.discom,
