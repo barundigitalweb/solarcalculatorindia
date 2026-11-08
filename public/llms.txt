@@ -1,0 +1,36 @@
+# Solar Calculator India
+
+> Free, independent rooftop solar feasibility, PM Surya Ghar: Muft Bijli Yojana (2026) government subsidy estimator, and monthly electricity savings calculator for Indian households.
+
+## Platform Summary
+Solar Calculator India is a client-side web utility providing transparent solar generation forecasts, central financial assistance (CFA) DBT subsidy calculations, DISCOM-specific tariff simulations, and SBI concessional solar loan payback modeling across India.
+
+## Official Subsidy Slabs (PM Surya Ghar 2026)
+- 1 kW System: ₹30,000 Direct Central DBT Subsidy
+- 2 kW System: ₹60,000 Direct Central DBT Subsidy
+- 3 kW+ System: ₹78,000 Maximum Central DBT Subsidy
+- Typical Solar Generation: 120 kWh (units) per month per kW installed capacity
+- Standard Payback: 2.8 to 3.5 years depending on local state DISCOM tariff
+
+## Canonical Endpoints
+- Home / Primary Calculator: https://solarcalculatorindia.com/
+- PM Surya Ghar Subsidy Guide: https://solarcalculatorindia.com/pm-surya-ghar-subsidy-calculator
+- 1 kW Solar Panel Cost & Subsidy: https://solarcalculatorindia.com/1kw-solar-panel-cost-calculator
+- 2 kW Solar Panel Cost & Subsidy: https://solarcalculatorindia.com/2kw-solar-panel-cost-calculator
+- 3 kW Solar System Cost & Subsidy: https://solarcalculatorindia.com/3kw-solar-panel-cost-calculator
+- SBI Solar Loan EMI Calculator: https://solarcalculatorindia.com/sbi-solar-loan-emi-calculator
+
+## State Specific Guides
+- Rajasthan Solar Calculator: https://solarcalculatorindia.com/solar-calculator-rajasthan
+- Delhi Solar Calculator: https://solarcalculatorindia.com/solar-calculator-delhi
+- Karnataka Solar Calculator: https://solarcalculatorindia.com/solar-calculator-karnataka
+- Maharashtra Solar Calculator: https://solarcalculatorindia.com/solar-calculator-maharashtra
+- Gujarat Solar Calculator: https://solarcalculatorindia.com/solar-calculator-gujarat
+- Uttar Pradesh Solar Calculator: https://solarcalculatorindia.com/solar-calculator-uttar-pradesh
+- West Bengal Solar Calculator: https://solarcalculatorindia.com/solar-calculator-west-bengal
+
+## Trust & Legal
+- Official Support Email: contact@solarcalculatorindia.com
+- About Us: https://solarcalculatorindia.com/about-us
+- Privacy Policy: https://solarcalculatorindia.com/privacy-policy
+- Terms of Service: https://solarcalculatorindia.com/terms-of-service

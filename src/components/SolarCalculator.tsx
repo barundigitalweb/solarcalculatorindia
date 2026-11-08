@@ -1,5 +1,4 @@
 import React, { useState, useMemo, useRef } from 'react';
-import confetti from 'canvas-confetti';
 import { 
   Sun, 
   Zap, 
@@ -53,9 +52,10 @@ export default function SolarCalculator({
 
   const reportRef = useRef<HTMLDivElement>(null);
 
-  // Confetti celebratory burst
-  const triggerCelebration = () => {
+  // Confetti celebratory burst (Dynamically loaded to minimize initial JS bundle)
+  const triggerCelebration = async () => {
     try {
+      const confetti = (await import('canvas-confetti')).default;
       confetti({
         particleCount: 75,
         spread: 65,
@@ -259,12 +259,14 @@ export default function SolarCalculator({
         <div className="bg-gradient-to-r from-emerald-800 via-emerald-700 to-teal-800 p-4 sm:p-6 text-white">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <label className="text-xs font-semibold uppercase tracking-wider text-emerald-200 block mb-1">
+              <label htmlFor="state-discom-select" className="text-xs font-semibold uppercase tracking-wider text-emerald-200 block mb-1">
                 Select Your State / Electricity DISCOM
               </label>
               <div className="flex items-center gap-2">
-                <Building2 className="w-5 h-5 text-emerald-300 shrink-0" />
+                <Building2 className="w-5 h-5 text-emerald-300 shrink-0" aria-hidden="true" />
                 <select
+                  id="state-discom-select"
+                  aria-label="Select Your State or Electricity DISCOM"
                   value={selectedStateId}
                   onChange={(e) => {
                     setSelectedStateId(e.target.value);
@@ -285,11 +287,12 @@ export default function SolarCalculator({
             <div className="flex items-center gap-4 text-xs sm:text-sm text-emerald-100 bg-emerald-900/40 px-4 py-2.5 rounded-xl border border-emerald-500/20">
               <div>
                 <div className="flex items-center gap-1.5">
-                  <span className="text-emerald-300">Electricity Rate:</span>
+                  <span className="text-emerald-300 font-medium">Electricity Rate:</span>
                   <button
                     type="button"
+                    aria-label="Edit electricity rate per unit"
                     onClick={() => setIsEditingTariff(!isEditingTariff)}
-                    className="text-[10px] text-amber-300 hover:text-amber-200 underline cursor-pointer"
+                    className="text-[11px] text-amber-300 hover:text-amber-200 underline font-semibold cursor-pointer"
                   >
                     {isEditingTariff ? 'Done' : '✎ Edit'}
                   </button>
@@ -299,6 +302,8 @@ export default function SolarCalculator({
                     <div className="flex items-center gap-1.5">
                       <span className="text-white font-bold">₹</span>
                       <input
+                        id="custom-tariff-input"
+                        aria-label="Custom electricity rate in rupees per unit"
                         type="number"
                         step="0.1"
                         min="2"
@@ -311,7 +316,7 @@ export default function SolarCalculator({
                       <button
                         type="button"
                         onClick={() => setIsEditingTariff(false)}
-                        className="text-[10px] bg-emerald-600 hover:bg-emerald-500 text-white px-2 py-0.5 rounded font-semibold ml-1 cursor-pointer"
+                        className="text-[11px] bg-emerald-600 hover:bg-emerald-500 text-white px-2 py-0.5 rounded font-semibold ml-1 cursor-pointer"
                       >
                         Apply
                       </button>
@@ -322,7 +327,7 @@ export default function SolarCalculator({
                             setCustomTariff(null);
                             setIsEditingTariff(false);
                           }}
-                          className="text-[10px] text-emerald-300 hover:text-white underline ml-1 cursor-pointer"
+                          className="text-[11px] text-emerald-300 hover:text-white underline ml-1 cursor-pointer"
                         >
                           Reset
                         </button>
@@ -333,21 +338,21 @@ export default function SolarCalculator({
                       <button
                         type="button"
                         onClick={() => setCustomTariff(5.2)}
-                        className="text-[9px] bg-emerald-900/80 hover:bg-emerald-800 text-emerald-200 px-1.5 py-0.5 rounded border border-emerald-600/40 cursor-pointer"
+                        className="text-[10px] bg-emerald-900/80 hover:bg-emerald-800 text-emerald-100 px-1.5 py-0.5 rounded border border-emerald-600/40 cursor-pointer font-medium"
                       >
                         Rural (~₹5.2)
                       </button>
                       <button
                         type="button"
                         onClick={() => setCustomTariff(currentState.avgTariff)}
-                        className="text-[9px] bg-emerald-900/80 hover:bg-emerald-800 text-emerald-200 px-1.5 py-0.5 rounded border border-emerald-600/40 cursor-pointer"
+                        className="text-[10px] bg-emerald-900/80 hover:bg-emerald-800 text-emerald-100 px-1.5 py-0.5 rounded border border-emerald-600/40 cursor-pointer font-medium"
                       >
                         State (~₹{currentState.avgTariff})
                       </button>
                       <button
                         type="button"
                         onClick={() => setCustomTariff(8.5)}
-                        className="text-[9px] bg-emerald-900/80 hover:bg-emerald-800 text-emerald-200 px-1.5 py-0.5 rounded border border-emerald-600/40 cursor-pointer"
+                        className="text-[10px] bg-emerald-900/80 hover:bg-emerald-800 text-emerald-100 px-1.5 py-0.5 rounded border border-emerald-600/40 cursor-pointer font-medium"
                       >
                         Urban (~₹8.5)
                       </button>
@@ -443,10 +448,12 @@ export default function SolarCalculator({
             {inputMode === 'bill' && (
               <div>
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-sm font-medium text-slate-700">Average Monthly Electricity Bill:</span>
+                  <label htmlFor="monthly-bill-slider" className="text-sm font-medium text-slate-700">Average Monthly Electricity Bill:</label>
                   <span className="text-2xl font-bold text-emerald-700">₹{monthlyBill.toLocaleString('en-IN')}</span>
                 </div>
                 <input
+                  id="monthly-bill-slider"
+                  aria-label="Average Monthly Electricity Bill in Rupees"
                   type="range"
                   min="500"
                   max="15000"
@@ -455,7 +462,7 @@ export default function SolarCalculator({
                   onChange={(e) => setMonthlyBill(Number(e.target.value))}
                   className="w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-600"
                 />
-                <div className="flex justify-between text-xs text-slate-400 mt-1.5 font-medium">
+                <div className="flex justify-between text-xs text-slate-500 mt-1.5 font-medium">
                   <span>₹500 / month</span>
                   <span>₹5,000 / month</span>
                   <span>₹10,000 / month</span>
@@ -482,10 +489,12 @@ export default function SolarCalculator({
             {inputMode === 'capacity' && (
               <div>
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-sm font-medium text-slate-700">Desired Solar Plant Capacity:</span>
+                  <label htmlFor="capacity-slider" className="text-sm font-medium text-slate-700">Desired Solar Plant Capacity:</label>
                   <span className="text-2xl font-bold text-emerald-700">{capacity} kW</span>
                 </div>
                 <input
+                  id="capacity-slider"
+                  aria-label="Desired Solar Plant Capacity in Kilowatts"
                   type="range"
                   min="1"
                   max="10"
@@ -494,7 +503,7 @@ export default function SolarCalculator({
                   onChange={(e) => setCapacity(Number(e.target.value))}
                   className="w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-600"
                 />
-                <div className="flex justify-between text-xs text-slate-400 mt-1.5 font-medium">
+                <div className="flex justify-between text-xs text-slate-500 mt-1.5 font-medium">
                   <span>1 kW (Small Home)</span>
                   <span>3 kW (Most Popular)</span>
                   <span>5 kW (ACs / 3BHK)</span>
@@ -524,10 +533,12 @@ export default function SolarCalculator({
             {inputMode === 'units' && (
               <div>
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-sm font-medium text-slate-700">Monthly Power Consumption:</span>
+                  <label htmlFor="monthly-units-slider" className="text-sm font-medium text-slate-700">Monthly Power Consumption:</label>
                   <span className="text-2xl font-bold text-emerald-700">{monthlyUnits} Units (kWh)</span>
                 </div>
                 <input
+                  id="monthly-units-slider"
+                  aria-label="Monthly Electricity Units Consumed in Kilowatt Hours"
                   type="range"
                   min="50"
                   max="1500"
@@ -536,7 +547,7 @@ export default function SolarCalculator({
                   onChange={(e) => setMonthlyUnits(Number(e.target.value))}
                   className="w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-600"
                 />
-                <div className="flex justify-between text-xs text-slate-400 mt-1.5 font-medium">
+                <div className="flex justify-between text-xs text-slate-500 mt-1.5 font-medium">
                   <span>50 units</span>
                   <span>300 units (PM Free Cap)</span>
                   <span>700 units</span>
@@ -548,10 +559,12 @@ export default function SolarCalculator({
             {inputMode === 'area' && (
               <div>
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-sm font-medium text-slate-700">Available Shadow-Free Rooftop Area:</span>
+                  <label htmlFor="roof-area-slider" className="text-sm font-medium text-slate-700">Available Shadow-Free Rooftop Area:</label>
                   <span className="text-2xl font-bold text-emerald-700">{roofArea} sq. ft.</span>
                 </div>
                 <input
+                  id="roof-area-slider"
+                  aria-label="Available Shadow Free Rooftop Area in Square Feet"
                   type="range"
                   min="100"
                   max="1500"
@@ -560,7 +573,7 @@ export default function SolarCalculator({
                   onChange={(e) => setRoofArea(Number(e.target.value))}
                   className="w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-600"
                 />
-                <div className="flex justify-between text-xs text-slate-400 mt-1.5 font-medium">
+                <div className="flex justify-between text-xs text-slate-500 mt-1.5 font-medium">
                   <span>100 sq ft (~1kW)</span>
                   <span>300 sq ft (~3kW)</span>
                   <span>600 sq ft (~6kW)</span>
@@ -724,10 +737,16 @@ export default function SolarCalculator({
 
       {/* Quote / Lead Modal */}
       {showLeadModal && (
-        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div 
+          className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="lead-modal-title"
+        >
           <div className="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 relative animate-in fade-in zoom-in-95 duration-200">
             <button
               type="button"
+              aria-label="Close quote modal"
               onClick={() => setShowLeadModal(false)}
               className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-1"
             >
@@ -738,9 +757,9 @@ export default function SolarCalculator({
               <div>
                 <div className="text-center mb-5">
                   <div className="w-12 h-12 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center mx-auto mb-2">
-                    <Sun className="w-6 h-6" />
+                    <Sun className="w-6 h-6" aria-hidden="true" />
                   </div>
-                  <h3 className="text-xl font-bold text-slate-900 font-display">Get 3 Free Solar Quotes</h3>
+                  <h3 id="lead-modal-title" className="text-xl font-bold text-slate-900 font-display">Get 3 Free Solar Quotes</h3>
                   <p className="text-xs text-slate-500 mt-1">
                     Connect with MNRE registered, verified rooftop solar installers in {currentState.name}.
                   </p>
@@ -760,8 +779,9 @@ export default function SolarCalculator({
 
                 <form onSubmit={handleLeadSubmit} className="space-y-3.5">
                   <div>
-                    <label className="text-xs font-semibold text-slate-700 block mb-1">Your Full Name</label>
+                    <label htmlFor="lead-name-input" className="text-xs font-semibold text-slate-700 block mb-1">Your Full Name</label>
                     <input
+                      id="lead-name-input"
                       type="text"
                       required
                       placeholder="e.g. Rahul Sharma"
@@ -772,8 +792,9 @@ export default function SolarCalculator({
                   </div>
 
                   <div>
-                    <label className="text-xs font-semibold text-slate-700 block mb-1">10-Digit Mobile Number (For Quotes)</label>
+                    <label htmlFor="lead-phone-input" className="text-xs font-semibold text-slate-700 block mb-1">10-Digit Mobile Number (For Quotes)</label>
                     <input
+                      id="lead-phone-input"
                       type="tel"
                       required
                       maxLength={10}
@@ -786,8 +807,9 @@ export default function SolarCalculator({
 
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="text-xs font-semibold text-slate-700 block mb-1">City / Town</label>
+                      <label htmlFor="lead-city-input" className="text-xs font-semibold text-slate-700 block mb-1">City / Town</label>
                       <input
+                        id="lead-city-input"
                         type="text"
                         required
                         placeholder="e.g. Kolkata / Pune"
@@ -797,8 +819,9 @@ export default function SolarCalculator({
                       />
                     </div>
                     <div>
-                      <label className="text-xs font-semibold text-slate-700 block mb-1">Pincode</label>
+                      <label htmlFor="lead-pincode-input" className="text-xs font-semibold text-slate-700 block mb-1">Pincode</label>
                       <input
+                        id="lead-pincode-input"
                         type="text"
                         required
                         maxLength={6}
@@ -839,6 +862,7 @@ export default function SolarCalculator({
                 </p>
                 <button
                   type="button"
+                  aria-label="Close modal"
                   onClick={() => { setShowLeadModal(false); setLeadSubmitted(false); }}
                   className="px-6 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl text-xs"
                 >

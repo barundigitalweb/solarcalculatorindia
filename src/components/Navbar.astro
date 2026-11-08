@@ -70,9 +70,14 @@ const navLinks = [
 
         <!-- State Dropdown Trigger / Links -->
         <div class="relative group py-2">
-          <button class="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+          <button 
+            type="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+            class="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-50"
+          >
             <span>State DISCOMs</span>
-            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
           </button>
@@ -119,9 +124,11 @@ const navLinks = [
           id="mobile-menu-btn" 
           type="button" 
           aria-label="Toggle Navigation Menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
           class="lg:hidden p-2 rounded-xl text-slate-600 hover:bg-slate-100 focus:outline-none"
         >
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
           </svg>
         </button>
@@ -151,7 +158,7 @@ const navLinks = [
       SBI Solar Loan EMI (@ 7%)
     </a>
     <div class="pt-2 border-t border-slate-100">
-      <span class="text-xs font-bold text-slate-400 uppercase tracking-wider px-3 block mb-1">State DISCOM Portals</span>
+      <span class="text-xs font-bold text-slate-500 uppercase tracking-wider px-3 block mb-1">State DISCOM Portals</span>
       <a href="/solar-calculator-rajasthan" class="block px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-50">Rajasthan (5.5 Sun Hours)</a>
       <a href="/solar-calculator-delhi" class="block px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-50">Delhi NCR (₹3/unit GBI)</a>
       <a href="/solar-calculator-karnataka" class="block px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-50">Karnataka (BESCOM)</a>
@@ -168,7 +175,8 @@ const navLinks = [
   const menu = document.getElementById('mobile-menu');
   if (menuBtn && menu) {
     menuBtn.addEventListener('click', () => {
-      menu.classList.toggle('hidden');
+      const isHidden = menu.classList.toggle('hidden');
+      menuBtn.setAttribute('aria-expanded', (!isHidden).toString());
     });
   }
 </script>

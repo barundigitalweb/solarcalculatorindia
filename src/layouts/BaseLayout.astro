@@ -51,6 +51,20 @@ const webAppSchema = {
   }
 };
 
+// Organization Schema for Knowledge Graph & AI Crawlers
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Solar Calculator India",
+  "url": siteUrl,
+  "logo": `${siteUrl}/favicon.svg`,
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "contact@solarcalculatorindia.com",
+    "contactType": "customer support"
+  }
+};
+
 // FAQ Schema if provided
 const faqSchema = faqList.length > 0 ? {
   "@context": "https://schema.org",
@@ -100,10 +114,14 @@ const faqSchema = faqList.length > 0 ? {
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={`${siteUrl}/og-image.svg`} />
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts (Non-blocking & Optimized for PageSpeed) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" media="print" onload="this.media='all'" />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" />
+    </noscript>
 
     <!-- Google Tag Manager / Analytics (GTM-MCCTJNKT) -->
     <script is:inline async src="https://www.googletagmanager.com/gtm.js?id=GTM-MCCTJNKT"></script>
@@ -116,6 +134,7 @@ const faqSchema = faqList.length > 0 ? {
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(webAppSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
     {faqSchema && (
       <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
     )}
