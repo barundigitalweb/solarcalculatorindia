@@ -41,6 +41,8 @@ export default function SolarCalculator({
   const [monthlyUnits, setMonthlyUnits] = useState<number>(300);
   const [roofArea, setRoofArea] = useState<number>(300);
   const [selectedStateId, setSelectedStateId] = useState<string>(initialStateId);
+  const [customTariff, setCustomTariff] = useState<number | null>(null);
+  const [isEditingTariff, setIsEditingTariff] = useState<boolean>(false);
 
   // Lead modal state
   const [showLeadModal, setShowLeadModal] = useState<boolean>(false);
@@ -62,16 +64,17 @@ export default function SolarCalculator({
     } catch {}
   };
 
+  const currentState = INDIAN_STATES.find(s => s.id === selectedStateId) || INDIAN_STATES[0];
+  const effectiveTariff = (customTariff !== null && customTariff > 0) ? customTariff : currentState.avgTariff;
+
   // Compute metrics dynamically
   const metrics: SolarCalculationResult = useMemo(() => {
     let value = monthlyBill;
     if (inputMode === 'capacity') value = capacity;
     else if (inputMode === 'units') value = monthlyUnits;
     else if (inputMode === 'area') value = roofArea;
-    return computeSolarMetrics(inputMode, value, selectedStateId);
-  }, [inputMode, monthlyBill, capacity, monthlyUnits, roofArea, selectedStateId]);
-
-  const currentState = INDIAN_STATES.find(s => s.id === selectedStateId) || INDIAN_STATES[0];
+    return computeSolarMetrics(inputMode, value, selectedStateId, effectiveTariff);
+  }, [inputMode, monthlyBill, capacity, monthlyUnits, roofArea, selectedStateId, effectiveTariff]);
 
   // WhatsApp share generator
   const handleWhatsAppShare = () => {
@@ -263,7 +266,11 @@ export default function SolarCalculator({
                 <Building2 className="w-5 h-5 text-emerald-300 shrink-0" />
                 <select
                   value={selectedStateId}
-                  onChange={(e) => setSelectedStateId(e.target.value)}
+                  onChange={(e) => {
+                    setSelectedStateId(e.target.value);
+                    setCustomTariff(null);
+                    setIsEditingTariff(false);
+                  }}
                   className="bg-emerald-950/60 border border-emerald-400/40 rounded-xl px-3 py-2 text-sm sm:text-base text-white font-medium focus:outline-none focus:ring-2 focus:ring-amber-400 transition-all cursor-pointer w-full sm:w-80"
                 >
                   {INDIAN_STATES.map((st) => (
@@ -277,8 +284,52 @@ export default function SolarCalculator({
 
             <div className="flex items-center gap-4 text-xs sm:text-sm text-emerald-100 bg-emerald-900/40 px-4 py-2.5 rounded-xl border border-emerald-500/20">
               <div>
-                <span className="text-emerald-300 block">Avg. Tariff:</span>
-                <span className="font-bold text-white text-base">₹{currentState.avgTariff}/unit</span>
+                <div className="flex items-center gap-1.5">
+                  <span className="text-emerald-300">Avg. Tariff:</span>
+                  <button
+                    type="button"
+                    onClick={() => setIsEditingTariff(!isEditingTariff)}
+                    className="text-[10px] text-amber-300 hover:text-amber-200 underline cursor-pointer"
+                  >
+                    {isEditingTariff ? 'Done' : '✎ Edit'}
+                  </button>
+                </div>
+                {isEditingTariff ? (
+                  <div className="flex items-center gap-1 mt-1">
+                    <span className="text-white font-bold">₹</span>
+                    <input
+                      type="number"
+                      step="0.1"
+                      min="3"
+                      max="25"
+                      value={effectiveTariff}
+                      onChange={(e) => setCustomTariff(Number(e.target.value))}
+                      className="w-16 bg-emerald-950 text-white font-bold px-1.5 py-0.5 rounded border border-emerald-400 text-xs focus:outline-none"
+                    />
+                    <span className="text-emerald-300 text-xs">/unit</span>
+                    {customTariff !== null && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setCustomTariff(null);
+                          setIsEditingTariff(false);
+                        }}
+                        className="text-[10px] text-emerald-300 hover:text-white underline ml-1 cursor-pointer"
+                      >
+                        Reset
+                      </button>
+                    )}
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-1.5">
+                    <span className="font-bold text-white text-base">₹{effectiveTariff}/unit</span>
+                    {customTariff !== null && (
+                      <span className="text-[10px] bg-amber-400/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-400/30 font-semibold">
+                        Custom
+                      </span>
+                    )}
+                  </div>
+                )}
               </div>
               <div className="h-8 w-px bg-emerald-600/40"></div>
               <div>

@@ -242,10 +242,11 @@ export function calculateSolarLoanEmi(principal: number, annualRatePercent: numb
 export function computeSolarMetrics(
   inputMode: 'bill' | 'units' | 'area' | 'capacity',
   inputValue: number,
-  stateId: string = 'national'
+  stateId: string = 'national',
+  customTariff?: number
 ): SolarCalculationResult {
   const state = INDIAN_STATES.find(s => s.id === stateId) || INDIAN_STATES[0];
-  const tariff = state.avgTariff;
+  const tariff = (customTariff && customTariff > 0) ? customTariff : state.avgTariff;
   const sunHours = state.sunHours;
 
   let capacityKw = 3; // Default baseline
