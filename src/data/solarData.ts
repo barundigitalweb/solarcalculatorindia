@@ -34,11 +34,19 @@ export const INDIAN_STATES: StateDiscom[] = [
   },
   {
     id: 'br',
-    name: 'Bihar',
+    name: 'Bihar (Urban DS-II)',
     discom: 'NBPDCL / SBPDCL',
-    avgTariff: 7.3,
+    avgTariff: 7.2,
     sunHours: 4.5,
-    stateSubsidyNote: 'BREDA facilitation for rural and semi-urban rooftop installations.'
+    stateSubsidyNote: 'Bihar Urban (Patna, Gaya, Muzaffarpur) domestic higher slabs average ~₹6.50–₹7.50/unit.'
+  },
+  {
+    id: 'br-rural',
+    name: 'Bihar (Rural DS-I)',
+    discom: 'NBPDCL / SBPDCL',
+    avgTariff: 4.8,
+    sunHours: 4.5,
+    stateSubsidyNote: 'Bihar Rural subsidized domestic slabs average ~₹4.00–₹5.50/unit.'
   },
   {
     id: 'cg',
@@ -114,11 +122,19 @@ export const INDIAN_STATES: StateDiscom[] = [
   },
   {
     id: 'mh',
-    name: 'Maharashtra',
-    discom: 'MSEDCL / Tata Power / Adani Mumbai',
-    avgTariff: 9.2,
+    name: 'Maharashtra (MSEDCL State/Districts)',
+    discom: 'MSEDCL (Mahavitaran)',
+    avgTariff: 8.8,
     sunHours: 4.8,
-    stateSubsidyNote: 'High slab tariffs make solar payback fastest in Maharashtra (< 3 years).'
+    stateSubsidyNote: 'MSEDCL (Pune, Nagpur, Nashik & districts) domestic higher slabs average ~₹8.00–₹9.80/unit.'
+  },
+  {
+    id: 'mh-mumbai',
+    name: 'Maharashtra (Mumbai - Tata/Adani)',
+    discom: 'Tata Power / Adani Mumbai',
+    avgTariff: 11.2,
+    sunHours: 4.8,
+    stateSubsidyNote: 'Mumbai island high-slab power rates average ~₹10.50–₹14.00/unit. Fastest solar payback in India (< 2.5 yrs).'
   },
   {
     id: 'od',
@@ -154,12 +170,21 @@ export const INDIAN_STATES: StateDiscom[] = [
   },
   {
     id: 'up',
-    name: 'Uttar Pradesh',
+    name: 'Uttar Pradesh (UPPCL Urban)',
     discom: 'UPPCL (PVVNL / DVVNL / MVVNL / PuVVNL)',
-    avgTariff: 7.1,
+    avgTariff: 7.2,
     sunHours: 4.6,
     stateSubsidyAmount: 30000,
-    stateSubsidyNote: 'UP State Government provides up to ₹30,000 state top-up subsidy via UPNEDA on top of Central subsidy!'
+    stateSubsidyNote: 'UP Urban (Noida, Lucknow, Kanpur, Agra) domestic slabs + up to ₹30,000 UPNEDA state subsidy!'
+  },
+  {
+    id: 'up-rural',
+    name: 'Uttar Pradesh (UPPCL Rural)',
+    discom: 'UPPCL (LMV-1 Rural)',
+    avgTariff: 5.2,
+    sunHours: 4.6,
+    stateSubsidyAmount: 30000,
+    stateSubsidyNote: 'UP Rural subsidized LMV-1 domestic slabs average ~₹4.50–₹5.50/unit + up to ₹30,000 UPNEDA state subsidy!'
   },
   {
     id: 'uk',

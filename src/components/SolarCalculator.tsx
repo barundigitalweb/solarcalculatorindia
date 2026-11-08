@@ -295,30 +295,63 @@ export default function SolarCalculator({
                   </button>
                 </div>
                 {isEditingTariff ? (
-                  <div className="flex items-center gap-1 mt-1">
-                    <span className="text-white font-bold">₹</span>
-                    <input
-                      type="number"
-                      step="0.1"
-                      min="3"
-                      max="25"
-                      value={effectiveTariff}
-                      onChange={(e) => setCustomTariff(Number(e.target.value))}
-                      className="w-16 bg-emerald-950 text-white font-bold px-1.5 py-0.5 rounded border border-emerald-400 text-xs focus:outline-none"
-                    />
-                    <span className="text-emerald-300 text-xs">/unit</span>
-                    {customTariff !== null && (
+                  <div className="mt-1">
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-white font-bold">₹</span>
+                      <input
+                        type="number"
+                        step="0.1"
+                        min="2"
+                        max="25"
+                        value={effectiveTariff}
+                        onChange={(e) => setCustomTariff(Number(e.target.value))}
+                        className="w-16 bg-emerald-950 text-white font-bold px-1.5 py-0.5 rounded border border-emerald-400 text-xs focus:outline-none"
+                      />
+                      <span className="text-emerald-300 text-xs">/unit</span>
                       <button
                         type="button"
-                        onClick={() => {
-                          setCustomTariff(null);
-                          setIsEditingTariff(false);
-                        }}
-                        className="text-[10px] text-emerald-300 hover:text-white underline ml-1 cursor-pointer"
+                        onClick={() => setIsEditingTariff(false)}
+                        className="text-[10px] bg-emerald-600 hover:bg-emerald-500 text-white px-2 py-0.5 rounded font-semibold ml-1 cursor-pointer"
                       >
-                        Reset
+                        Apply
                       </button>
-                    )}
+                      {customTariff !== null && (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setCustomTariff(null);
+                            setIsEditingTariff(false);
+                          }}
+                          className="text-[10px] text-emerald-300 hover:text-white underline ml-1 cursor-pointer"
+                        >
+                          Reset
+                        </button>
+                      )}
+                    </div>
+                    {/* Quick Category Presets */}
+                    <div className="flex items-center gap-1 mt-1.5">
+                      <button
+                        type="button"
+                        onClick={() => setCustomTariff(5.2)}
+                        className="text-[9px] bg-emerald-900/80 hover:bg-emerald-800 text-emerald-200 px-1.5 py-0.5 rounded border border-emerald-600/40 cursor-pointer"
+                      >
+                        Rural (~₹5.2)
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setCustomTariff(currentState.avgTariff)}
+                        className="text-[9px] bg-emerald-900/80 hover:bg-emerald-800 text-emerald-200 px-1.5 py-0.5 rounded border border-emerald-600/40 cursor-pointer"
+                      >
+                        State (~₹{currentState.avgTariff})
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setCustomTariff(8.5)}
+                        className="text-[9px] bg-emerald-900/80 hover:bg-emerald-800 text-emerald-200 px-1.5 py-0.5 rounded border border-emerald-600/40 cursor-pointer"
+                      >
+                        Urban (~₹8.5)
+                      </button>
+                    </div>
                   </div>
                 ) : (
                   <div className="flex items-center gap-1.5">
