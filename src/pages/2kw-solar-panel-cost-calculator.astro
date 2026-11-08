@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SolarCalculator from '../components/SolarCalculator';
+
+const title = "2 kW Solar Panel Price with Subsidy (2026) - Cost & Electricity Savings";
+const description = "Calculate 2 kW solar panel price in India with ₹60,000 PM Surya Ghar subsidy. See installation cost, rooftop area (200 sq ft), daily 8-9 units generation, and 3-year payback.";
+
+const faqs = [
+  {
+    question: "How much is the subsidy for a 2 kW solar plant?",
+    answer: "Under the PM Surya Ghar: Muft Bijli Yojana, a flat subsidy of ₹60,000 (₹30,000 per kW) is provided for a 2 kW residential solar system."
+  },
+  {
+    question: "What is the net investment for a 2 kW solar setup?",
+    answer: "The benchmark cost of a 2 kW setup is around ₹1,00,000 to ₹1,10,000. After the ₹60,000 government subsidy, your net cost is approximately ₹40,000 to ₹50,000."
+  },
+  {
+    question: "Can a 2 kW solar system run an air conditioner?",
+    answer: "A 2 kW solar system produces about 8 to 9 units per day (approx. 240 to 270 units per month). It can comfortably power a 1-ton 5-star inverter air conditioner for 4 to 5 hours daily, along with your refrigerator and basic appliances."
+  }
+];
+---
+
+<BaseLayout title={title} description={description} faqList={faqs}>
+  <SolarCalculator 
+    client:load 
+    initialCapacity={2}
+    pageTitle="2 kW Solar Panel System — Cost, Subsidy & Savings (2026)"
+    pageSubtitle="Perfect for 2BHK households with monthly electricity bills between ₹1,500 and ₹2,200. Eligible for ₹60,000 central subsidy."
+  />
+
+  <section class="max-w-5xl mx-auto px-4 py-12">
+    <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display mb-4">
+        2 kW Rooftop Solar System: Optimal for 2BHK Homes
+      </h2>
+      <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+        A 2 kW solar power plant generates roughly <strong>240 to 270 units per month</strong>. It requires approximately <strong>190 to 200 square feet of shadow-free rooftop space</strong>, making it the most sensible option for urban duplexes and medium-sized households.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-5 rounded-2xl bg-emerald-50 border border-emerald-200">
+          <div class="text-xs font-bold text-emerald-800 uppercase">Turnkey Benchmark Cost</div>
+          <div class="text-2xl font-bold text-slate-900 mt-1 mb-1">₹1,00,000 – ₹1,10,000</div>
+          <p class="text-xs text-slate-600">Complete setup with DCR panels and net meter.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-200">
+          <div class="text-xs font-bold text-amber-800 uppercase">Govt. DBT Subsidy</div>
+          <div class="text-2xl font-bold text-amber-600 mt-1 mb-1">₹60,000 Flat</div>
+          <p class="text-xs text-slate-600">Disbursed directly into your bank account.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-blue-50 border border-blue-200">
+          <div class="text-xs font-bold text-blue-800 uppercase">Net Cost to You</div>
+          <div class="text-2xl font-bold text-blue-800 mt-1 mb-1">₹40,000 – ₹50,000</div>
+          <p class="text-xs text-slate-600">Recovers full capital cost in ~2.8 years!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

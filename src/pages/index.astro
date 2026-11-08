@@ -1,0 +1,234 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SolarCalculator from '../components/SolarCalculator';
+
+const title = "Solar Calculator India 2026 - PM Surya Ghar Rooftop Subsidy & Savings Estimator";
+const description = "Free Solar Rooftop Calculator for India. Calculate exact solar capacity (kW), PM Surya Ghar Central Subsidy (up to ₹78,000), monthly electricity savings, and 5-year SBI solar loan EMI.";
+
+const faqs = [
+  {
+    question: "How much government subsidy is given under PM Surya Ghar Yojana in 2026?",
+    answer: "Under the PM Surya Ghar: Muft Bijli Yojana, the Central Government provides a direct bank transfer (DBT) subsidy of ₹30,000 for a 1 kW system, ₹60,000 for a 2 kW system, and a maximum of ₹78,000 for residential rooftop systems of 3 kW and above."
+  },
+  {
+    question: "How much roof area is required for a 3 kW solar system in India?",
+    answer: "A standard 3 kW residential solar setup requires approximately 280 to 300 square feet of shadow-free rooftop space. High-efficiency Mono PERC or Bi-facial solar panels can generate optimal output within 270 sq. ft."
+  },
+  {
+    question: "How much can I save on my electricity bill every month with rooftop solar?",
+    answer: "A 3 kW solar plant in India generates approximately 360 units (kWh) of electricity per month. If your average DISCOM tariff is ₹7.50 per unit, you will save approximately ₹2,700 every month, or over ₹32,400 per year."
+  },
+  {
+    question: "What is the typical payback period for residential rooftop solar in India?",
+    answer: "With the ₹78,000 central subsidy and standard net-metering electricity tariffs, the typical capital payback period is between 2.8 and 3.5 years. Since solar panels carry a 25-year performance warranty, the remaining 21+ years provide virtually 100% free electricity."
+  },
+  {
+    question: "Can I get a bank loan for installing rooftop solar?",
+    answer: "Yes! Leading public sector banks such as State Bank of India (SBI), Canara Bank, and Punjab National Bank offer collateral-free solar loans at a repo-linked concessional interest rate of approximately 7.0% per annum for systems up to 3 kW with minimal paperwork."
+  }
+];
+---
+
+<BaseLayout title={title} description={description} faqList={faqs}>
+  
+  <!-- Interactive Calculator Engine -->
+  <SolarCalculator client:load />
+
+  <!-- Educational & In-Depth Guide Section (Essential for AdSense & E-E-A-T) -->
+  <section class="max-w-5xl mx-auto px-4 py-12">
+    
+    <!-- Quick Subsidy Slabs Overview -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm mb-12">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display mb-4">
+        PM Surya Ghar: Muft Bijli Yojana — Official Subsidy Slabs (2026)
+      </h2>
+      <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+        Launched by the Government of India with a total budget outlay of ₹75,021 Crore, the <strong>PM Surya Ghar: Muft Bijli Yojana</strong> aims to provide 1 Crore Indian households with free electricity of up to 300 units per month. The Central Financial Assistance (CFA) is disbursed directly to the beneficiary's authenticated bank account via Direct Benefit Transfer (DBT).
+      </p>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-100 text-slate-800 border-b border-slate-200">
+              <th class="py-3.5 px-4 font-bold">Rooftop Capacity</th>
+              <th class="py-3.5 px-4 font-bold">Roof Space Required</th>
+              <th class="py-3.5 px-4 font-bold">Estimated Turnkey Cost</th>
+              <th class="py-3.5 px-4 font-bold text-emerald-700">Central Subsidy (DBT)</th>
+              <th class="py-3.5 px-4 font-bold text-slate-900">Net Cost to Owner</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 text-slate-700">
+            <tr class="hover:bg-slate-50">
+              <td class="py-3 px-4 font-semibold text-slate-900">1 kW System</td>
+              <td class="py-3 px-4">~95 – 100 sq. ft.</td>
+              <td class="py-3 px-4">₹50,000 – ₹55,000</td>
+              <td class="py-3 px-4 font-bold text-emerald-600">₹30,000</td>
+              <td class="py-3 px-4 font-bold text-slate-900">₹20,000 – ₹25,000</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="py-3 px-4 font-semibold text-slate-900">2 kW System</td>
+              <td class="py-3 px-4">~190 – 200 sq. ft.</td>
+              <td class="py-3 px-4">₹1,00,000 – ₹1,10,000</td>
+              <td class="py-3 px-4 font-bold text-emerald-600">₹60,000</td>
+              <td class="py-3 px-4 font-bold text-slate-900">₹40,000 – ₹50,000</td>
+            </tr>
+            <tr class="bg-emerald-50/60 font-semibold hover:bg-emerald-50">
+              <td class="py-3.5 px-4 text-emerald-950">3 kW System (🔥 Most Popular)</td>
+              <td class="py-3.5 px-4 text-emerald-900">~280 – 300 sq. ft.</td>
+              <td class="py-3.5 px-4 text-emerald-900">₹1,50,000 – ₹1,65,000</td>
+              <td class="py-3.5 px-4 font-bold text-emerald-700">₹78,000 (Max Cap)</td>
+              <td class="py-3.5 px-4 font-bold text-emerald-950">₹72,000 – ₹87,000</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="py-3 px-4 font-semibold text-slate-900">4 kW to 10 kW</td>
+              <td class="py-3 px-4">~400 – 1000 sq. ft.</td>
+              <td class="py-3 px-4">₹2,10,000 – ₹4,90,000</td>
+              <td class="py-3 px-4 font-bold text-emerald-600">₹78,000 (Flat Capped)</td>
+              <td class="py-3 px-4 font-bold text-slate-900">₹1,32,000 – ₹4,12,000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-[11px] text-slate-500 mt-3 italic">
+        * Note: Benchmark costs are indicative turnkey rates for Tier-1 ALMM listed DCR solar modules with on-grid string inverters. Actual quotation may vary slightly based on roof structure height and local DISCOM meter charges.
+      </p>
+    </div>
+
+    <!-- Step by Step How to Apply Guide -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm mb-12">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display mb-6">
+        How to Apply for PM Surya Ghar Solar Subsidy (Step-by-Step)
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <div class="flex gap-4 items-start">
+          <div class="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-700 font-bold flex items-center justify-center shrink-0 text-base">
+            1
+          </div>
+          <div>
+            <h4 class="font-bold text-slate-900 text-base mb-1">National Portal Registration</h4>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Visit <a href="https://pmsuryaghar.gov.in" target="_blank" rel="noopener noreferrer" class="text-emerald-600 underline font-medium">pmsuryaghar.gov.in</a>, select your State and Electricity Distribution Company (DISCOM), and enter your Consumer Account Number along with your registered mobile.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-4 items-start">
+          <div class="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-700 font-bold flex items-center justify-center shrink-0 text-base">
+            2
+          </div>
+          <div>
+            <h4 class="font-bold text-slate-900 text-base mb-1">DISCOM Feasibility Approval</h4>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Apply online for technical feasibility approval. Your local DISCOM verifies whether your sanctioned electrical load and local transformer capacity can accommodate the proposed solar capacity.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-4 items-start">
+          <div class="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-700 font-bold flex items-center justify-center shrink-0 text-base">
+            3
+          </div>
+          <div>
+            <h4 class="font-bold text-slate-900 text-base mb-1">Installation by Registered Vendor</h4>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Upon feasibility approval, select an MNRE-registered certified solar vendor from the portal directory. The vendor installs domestic content requirement (DCR) compliant ALMM solar panels and grid-tie inverters.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-4 items-start">
+          <div class="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-700 font-bold flex items-center justify-center shrink-0 text-base">
+            4
+          </div>
+          <div>
+            <h4 class="font-bold text-slate-900 text-base mb-1">Net Metering & Direct DBT Subsidy</h4>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              The DISCOM inspects the plant and installs a bi-directional Net Meter. Submit bank account details and cancelled cheque on the portal to receive the central subsidy credited to your bank account within 30 days!
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Solar Technology Comparison: On-Grid vs Off-Grid vs Hybrid -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm mb-12">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display mb-4">
+        Which Solar System is Best for Your Home?
+      </h2>
+      <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+        Understanding the difference between On-Grid, Off-Grid, and Hybrid solar power systems is critical before selecting your setup:
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200">
+          <div class="text-xs font-bold uppercase tracking-wider text-emerald-700 mb-2">Recommended for Cities</div>
+          <h4 class="text-lg font-bold text-slate-900 mb-2">On-Grid (Grid-Tied) Solar</h4>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+            Connected directly to your DISCOM grid via a bi-directional net meter. No expensive batteries required. Lowest cost and qualifies for full PM Surya Ghar subsidies!
+          </p>
+          <ul class="text-xs text-slate-700 space-y-1.5 font-medium">
+            <li>✅ Lowest upfront investment</li>
+            <li>✅ Full government subsidy (₹78k)</li>
+            <li>✅ Zero battery replacement costs</li>
+            <li>⚠️ Shuts down during power outages</li>
+          </ul>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200">
+          <div class="text-xs font-bold uppercase tracking-wider text-amber-700 mb-2">For Frequent Power Cuts</div>
+          <h4 class="text-lg font-bold text-slate-900 mb-2">Hybrid Solar System</h4>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+            Combines the benefits of on-grid net metering with lithium-ion or lead-acid battery backup. Provides uninterrupted power during blackouts while still exporting surplus solar power.
+          </p>
+          <ul class="text-xs text-slate-700 space-y-1.5 font-medium">
+            <li>✅ 24/7 power backup during cuts</li>
+            <li>✅ Net-metering export capability</li>
+            <li>⚠️ 35% - 50% higher cost for batteries</li>
+            <li>⚠️ Subsidy applies only to solar portion</li>
+          </ul>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200">
+          <div class="text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">For Remote / Rural Areas</div>
+          <h4 class="text-lg font-bold text-slate-900 mb-2">Off-Grid Solar System</h4>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+            Completely independent from the electrical grid. Charges deep-cycle battery banks during daylight to run household appliances at night. Ideal for farmhouses and remote off-grid locations.
+          </p>
+          <ul class="text-xs text-slate-700 space-y-1.5 font-medium">
+            <li>✅ Complete electrical independence</li>
+            <li>✅ Ideal where grid power is unavailable</li>
+            <li>⚠️ No PM Surya Ghar grid subsidy</li>
+            <li>⚠️ Periodic battery maintenance needed</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- FAQ Accordion Section -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display mb-6">
+        Frequently Asked Questions (FAQs) on Solar Subsidy in India
+      </h2>
+
+      <div class="divide-y divide-slate-200">
+        {faqs.map((faq, index) => (
+          <div class="py-4">
+            <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-2">
+              {faq.question}
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              {faq.answer}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+  </section>
+
+</BaseLayout>

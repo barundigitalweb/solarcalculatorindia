@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SolarCalculator from '../components/SolarCalculator';
+
+const title = "Solar Calculator Maharashtra 2026 - MSEDCL (Mahavitaran) Subsidy & Tariffs";
+const description = "Calculate rooftop solar cost and PM Surya Ghar subsidy in Maharashtra. MSEDCL (Mahavitaran), Tata Power, Adani Mumbai high slab tariffs (₹9.20/unit), and under 3-year payback.";
+
+const faqs = [
+  {
+    question: "Why is solar payback fastest in Maharashtra?",
+    answer: "Maharashtra has some of the highest residential electricity slab tariffs in India (reaching ₹12 to ₹14 per unit for consumption above 300 units). As a result, solar savings in Mumbai and Pune are significantly higher, reducing the payback period to under 3 years!"
+  },
+  {
+    question: "How much subsidy is available for MSEDCL consumers?",
+    answer: "Under PM Surya Ghar Yojana, all residential consumers of MSEDCL (Mahavitaran), Tata Power, and Adani Electricity Mumbai receive up to ₹78,000 direct central subsidy for a 3 kW system."
+  }
+];
+---
+
+<BaseLayout title={title} description={description} faqList={faqs}>
+  <SolarCalculator 
+    client:load 
+    initialStateId="mh"
+    pageTitle="Maharashtra Solar Rooftop Calculator (MSEDCL & Mumbai)"
+    pageSubtitle="Check your PM Surya Ghar subsidy, net metering electricity bill savings, and fastest payback period for Pune, Mumbai, Nagpur, Nashik, and all Maharashtra cities."
+  />
+
+  <section class="max-w-5xl mx-auto px-4 py-12">
+    <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display mb-4">
+        Rooftop Solar in Maharashtra: Mahavitaran (MSEDCL) & Mumbai Guidelines
+      </h2>
+      <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+        With an average of <strong>4.8 peak sun hours per day</strong> and steep progressive slab tariffs, Maharashtra is the most lucrative state in India for residential rooftop solar investment.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-5 rounded-2xl bg-emerald-50 border border-emerald-200">
+          <h4 class="font-bold text-slate-900 text-base mb-2">⚡ Mahavitaran (MSEDCL) Net Metering</h4>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            MSEDCL processes net-metering applications digitally via its portal. Consumers can offset peak daytime usage and bank surplus units for nighttime consumption.
+          </p>
+        </div>
+        <div class="p-5 rounded-2xl bg-emerald-50 border border-emerald-200">
+          <h4 class="font-bold text-slate-900 text-base mb-2">🏢 Mumbai High-Tariff Advantage</h4>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Tata Power and Adani Electricity consumers in Mumbai save the highest per unit generated due to higher municipal power purchase costs and slab tariffs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

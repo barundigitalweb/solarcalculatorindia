@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SolarCalculator from '../components/SolarCalculator';
+
+const title = "PM Surya Ghar Subsidy Calculator 2026 - Central Financial Assistance (CFA) Rules";
+const description = "Calculate PM Surya Ghar Muft Bijli Yojana subsidy online. Check DBT subsidy amounts (₹30,000 for 1kW, ₹60,000 for 2kW, ₹78,000 for 3kW), eligibility, and required documents.";
+
+const faqs = [
+  {
+    question: "What is the maximum subsidy under PM Surya Ghar Yojana?",
+    answer: "The maximum Central Financial Assistance (CFA) subsidy under PM Surya Ghar: Muft Bijli Yojana is ₹78,000 for residential rooftop solar systems of 3 kW capacity and above."
+  },
+  {
+    question: "Who is eligible for PM Surya Ghar: Muft Bijli Yojana?",
+    answer: "Any Indian citizen who owns a residential house with a suitable shadow-free rooftop and an active domestic electricity connection (consumer number) with their local DISCOM is eligible. The applicant must have a valid bank account linked with Aadhaar."
+  },
+  {
+    question: "How long does it take for the subsidy to be credited?",
+    answer: "After the installation of the solar plant and commissioning of the bi-directional net meter by the DISCOM, the vendor and user submit the commissioning report. The central subsidy of up to ₹78,000 is directly transferred to the consumer's bank account within 30 days."
+  }
+];
+---
+
+<BaseLayout title={title} description={description} faqList={faqs}>
+  <SolarCalculator 
+    client:load 
+    pageTitle="PM Surya Ghar: Muft Bijli Yojana Subsidy Calculator"
+    pageSubtitle="Check your central government DBT cash subsidy amount, net investment, and 300 free units savings as per 2026 MNRE guidelines."
+  />
+
+  <section class="max-w-5xl mx-auto px-4 py-12">
+    <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm mb-8">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display mb-4">
+        PM Surya Ghar Subsidy Structure & Calculation Formula
+      </h2>
+      <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+        The Ministry of New and Renewable Energy (MNRE) structured the PM Surya Ghar subsidy to provide the highest financial assistance to residential homeowners installing systems up to 3 kW:
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="p-5 rounded-2xl bg-emerald-50 border border-emerald-200">
+          <span class="text-xs font-bold text-emerald-800 uppercase">First 1 kW Capacity</span>
+          <div class="text-2xl font-bold text-emerald-700 mt-1 mb-2">₹30,000 / kW</div>
+          <p class="text-xs text-slate-600">Fixed subsidy for small residential homes with monthly electricity consumption of up to 150 units.</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-emerald-50 border border-emerald-200">
+          <span class="text-xs font-bold text-emerald-800 uppercase">Second 1 kW (Up to 2 kW)</span>
+          <div class="text-2xl font-bold text-emerald-700 mt-1 mb-2">₹30,000 / kW</div>
+          <p class="text-xs text-slate-600">Total subsidy becomes ₹60,000 for a 2 kW system, catering to homes using 150 to 300 units/month.</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-200">
+          <span class="text-xs font-bold text-amber-800 uppercase">Third 1 kW (3 kW & Above)</span>
+          <div class="text-2xl font-bold text-amber-700 mt-1 mb-2">₹18,000 / kW</div>
+          <p class="text-xs text-slate-600">Total subsidy caps at ₹78,000 for systems of 3 kW and higher (up to 10 kW for individual residences).</p>
+        </div>
+      </div>
+
+      <h3 class="text-xl font-bold text-slate-900 mb-3">Documents Required for Application</h3>
+      <ul class="list-disc list-inside text-sm text-slate-600 space-y-2 mb-6">
+        <li>Latest electricity bill copy (showing consumer number & sanctioned load)</li>
+        <li>Aadhaar card copy of the electricity bill holder</li>
+        <li>Bank passbook copy or cancelled cheque (for DBT subsidy disbursement)</li>
+        <li>Photograph of the clear, shadow-free rooftop</li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

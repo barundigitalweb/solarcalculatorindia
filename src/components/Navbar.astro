@@ -1,0 +1,162 @@
+---
+const currentPath = Astro.url.pathname;
+
+const navLinks = [
+  { href: '/', label: 'Calculator' },
+  { href: '/pm-surya-ghar-subsidy-calculator', label: 'PM Surya Ghar' },
+  { href: '/3kw-solar-panel-cost-calculator', label: '3 kW System (🔥 Most Popular)' },
+  { href: '/sbi-solar-loan-emi-calculator', label: 'Solar Loan EMI' },
+  { href: '/solar-calculator-west-bengal', label: 'West Bengal' },
+  { href: '/solar-calculator-maharashtra', label: 'Maharashtra' },
+  { href: '/solar-calculator-uttar-pradesh', label: 'Uttar Pradesh' },
+];
+---
+
+<header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 sm:h-20">
+      
+      <!-- Brand Logo -->
+      <a href="/" class="flex items-center gap-2.5 group">
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-amber-500 to-emerald-600 flex items-center justify-center text-white shadow-md shadow-amber-500/20 group-hover:scale-105 transition-transform">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path>
+            <path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path>
+            <path d="m19.07 4.93-1.41 1.41"></path>
+          </svg>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-lg sm:text-xl font-extrabold text-slate-900 tracking-tight font-display leading-none">
+            SolarCalculator<span class="text-emerald-600">India</span>
+          </span>
+          <span class="text-[10px] sm:text-[11px] font-semibold text-slate-400 uppercase tracking-widest mt-0.5">
+            Rooftop & Subsidy Guide
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
+        <a 
+          href="/" 
+          class={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-colors ${currentPath === '/' ? 'text-emerald-700 bg-emerald-50' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'}`}
+        >
+          Calculator
+        </a>
+        <a 
+          href="/pm-surya-ghar-subsidy-calculator" 
+          class={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-colors ${currentPath === '/pm-surya-ghar-subsidy-calculator' ? 'text-emerald-700 bg-emerald-50' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'}`}
+        >
+          PM Surya Ghar Subsidy
+        </a>
+        <a 
+          href="/3kw-solar-panel-cost-calculator" 
+          class={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-colors ${currentPath === '/3kw-solar-panel-cost-calculator' ? 'text-emerald-700 bg-emerald-50' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'}`}
+        >
+          3 kW System (₹78k)
+        </a>
+        <a 
+          href="/sbi-solar-loan-emi-calculator" 
+          class={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-colors ${currentPath === '/sbi-solar-loan-emi-calculator' ? 'text-emerald-700 bg-emerald-50' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'}`}
+        >
+          Solar Loan EMI
+        </a>
+
+        <!-- State Dropdown Trigger / Links -->
+        <div class="relative group py-2">
+          <button class="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <span>State DISCOMs</span>
+            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="absolute right-0 top-full mt-1 w-52 bg-white rounded-2xl shadow-xl border border-slate-200 p-2 hidden group-hover:block animate-in fade-in zoom-in-95 duration-150">
+            <a href="/solar-calculator-west-bengal" class="block px-3 py-2 rounded-xl text-xs font-medium text-slate-700 hover:bg-emerald-50 hover:text-emerald-700">
+              West Bengal (WBSEDCL)
+            </a>
+            <a href="/solar-calculator-maharashtra" class="block px-3 py-2 rounded-xl text-xs font-medium text-slate-700 hover:bg-emerald-50 hover:text-emerald-700">
+              Maharashtra (MSEDCL)
+            </a>
+            <a href="/solar-calculator-uttar-pradesh" class="block px-3 py-2 rounded-xl text-xs font-medium text-slate-700 hover:bg-emerald-50 hover:text-emerald-700">
+              Uttar Pradesh (UPPCL)
+            </a>
+            <a href="/solar-calculator-gujarat" class="block px-3 py-2 rounded-xl text-xs font-medium text-slate-700 hover:bg-emerald-50 hover:text-emerald-700">
+              Gujarat (Surya Gujarat)
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Action Button -->
+      <div class="flex items-center gap-2">
+        <a 
+          href="/" 
+          class="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm shadow-sm transition-all"
+        >
+          <span>Calculate Subsidy</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+          </svg>
+        </a>
+
+        <!-- Mobile menu toggle button -->
+        <button 
+          id="mobile-menu-btn" 
+          type="button" 
+          aria-label="Toggle Navigation Menu"
+          class="lg:hidden p-2 rounded-xl text-slate-600 hover:bg-slate-100 focus:outline-none"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Mobile Menu Dropdown -->
+  <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-5 space-y-1">
+    <a href="/" class="block px-3 py-2 rounded-xl text-sm font-semibold text-slate-800 hover:bg-emerald-50 hover:text-emerald-700">
+      Home - Solar Subsidy Calculator
+    </a>
+    <a href="/pm-surya-ghar-subsidy-calculator" class="block px-3 py-2 rounded-xl text-sm font-semibold text-slate-800 hover:bg-emerald-50 hover:text-emerald-700">
+      PM Surya Ghar Scheme Rules
+    </a>
+    <a href="/1kw-solar-panel-cost-calculator" class="block px-3 py-2 rounded-xl text-sm font-semibold text-slate-800 hover:bg-emerald-50 hover:text-emerald-700">
+      1 kW Solar System (₹30k Subsidy)
+    </a>
+    <a href="/2kw-solar-panel-cost-calculator" class="block px-3 py-2 rounded-xl text-sm font-semibold text-slate-800 hover:bg-emerald-50 hover:text-emerald-700">
+      2 kW Solar System (₹60k Subsidy)
+    </a>
+    <a href="/3kw-solar-panel-cost-calculator" class="block px-3 py-2 rounded-xl text-sm font-semibold text-slate-800 hover:bg-emerald-50 hover:text-emerald-700">
+      3 kW Solar System (₹78k Subsidy)
+    </a>
+    <a href="/sbi-solar-loan-emi-calculator" class="block px-3 py-2 rounded-xl text-sm font-semibold text-slate-800 hover:bg-emerald-50 hover:text-emerald-700">
+      SBI Solar Loan EMI (@ 7%)
+    </a>
+    <div class="pt-2 border-t border-slate-100">
+      <span class="text-xs font-bold text-slate-400 uppercase tracking-wider px-3 block mb-1">State DISCOM Portals</span>
+      <a href="/solar-calculator-west-bengal" class="block px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-50">West Bengal (WBSEDCL)</a>
+      <a href="/solar-calculator-maharashtra" class="block px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-50">Maharashtra (MSEDCL)</a>
+      <a href="/solar-calculator-uttar-pradesh" class="block px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-50">Uttar Pradesh (UPPCL)</a>
+      <a href="/solar-calculator-gujarat" class="block px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-50">Gujarat (Surya Gujarat)</a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  if (menuBtn && menu) {
+    menuBtn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+  }
+</script>

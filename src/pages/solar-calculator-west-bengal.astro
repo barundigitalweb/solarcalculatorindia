@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SolarCalculator from '../components/SolarCalculator';
+
+const title = "Solar Calculator West Bengal 2026 - WBSEDCL & CESC Net Metering Subsidy";
+const description = "Calculate rooftop solar cost and PM Surya Ghar subsidy in West Bengal. WBSEDCL and CESC net-metering guidelines, average tariff ₹7.60/unit, and savings estimator.";
+
+const faqs = [
+  {
+    question: "What is the solar net metering rule under WBSEDCL in West Bengal?",
+    answer: "WBSEDCL permits net-metering for domestic residential consumers from 1 kW up to their sanctioned load. The bi-directional meter measures energy imported from and exported to the grid, and surplus units are adjusted against future bills."
+  },
+  {
+    question: "How much subsidy is available for solar rooftop in Kolkata (CESC)?",
+    answer: "Under PM Surya Ghar: Muft Bijli Yojana, CESC consumers in Kolkata are eligible for up to ₹78,000 direct central government subsidy for a 3 kW system."
+  }
+];
+---
+
+<BaseLayout title={title} description={description} faqList={faqs}>
+  <SolarCalculator 
+    client:load 
+    initialStateId="wb"
+    pageTitle="West Bengal Solar Rooftop Calculator (WBSEDCL & CESC)"
+    pageSubtitle="Check your PM Surya Ghar central subsidy, net metering savings, and payback period tailored for Kolkata, Howrah, North 24 Parganas, and all Bengal districts."
+  />
+
+  <section class="max-w-5xl mx-auto px-4 py-12">
+    <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display mb-4">
+        Rooftop Solar in West Bengal: WBSEDCL & CESC Guidelines
+      </h2>
+      <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+        West Bengal enjoys an average of <strong>4.4 peak sunshine hours per day</strong>. With an average residential electricity tariff of ₹7.60 per unit, a 3 kW solar plant in Bengal generates approximately <strong>360 units per month</strong>, saving over ₹2,700 every single month on your electricity bill.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-5 rounded-2xl bg-emerald-50 border border-emerald-200">
+          <h4 class="font-bold text-slate-900 text-base mb-2">⚡ WBSEDCL Domestic Consumers</h4>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Eligible across all rural and urban subdivisions of West Bengal State Electricity Distribution Company Limited. Application can be submitted directly via the PM Surya Ghar National Portal.
+          </p>
+        </div>
+        <div class="p-5 rounded-2xl bg-emerald-50 border border-emerald-200">
+          <h4 class="font-bold text-slate-900 text-base mb-2">🏙️ CESC Kolkata & Howrah</h4>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Calcutta Electric Supply Corporation supports smooth net-metering synchronization with bi-directional smart meters installed after technical inspection.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

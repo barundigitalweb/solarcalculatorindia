@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SolarCalculator from '../components/SolarCalculator';
+
+const title = "Solar Calculator Gujarat 2026 - Surya Gujarat & DISCOM Net Metering";
+const description = "Calculate rooftop solar cost and subsidy in Gujarat. Surya Gujarat portal guidelines, DGVCL, PGVCL, UGVCL, MGVCL net metering, and 5.2 peak sun hours savings.";
+
+const faqs = [
+  {
+    question: "Why is Gujarat a leader in rooftop solar?",
+    answer: "Gujarat receives an exceptional average of 5.2 peak sunshine hours per day. With over 80% sunny days in the year and streamlined digital approvals via the Surya Gujarat portal, Gujarat boasts the highest rooftop solar adoption in India."
+  },
+  {
+    question: "What is the subsidy for rooftop solar in Ahmedabad and Surat?",
+    answer: "Under the PM Surya Ghar: Muft Bijli Yojana, residential consumers of Torrent Power, UGVCL, DGVCL, and PGVCL are entitled to up to ₹78,000 direct central cash subsidy for a 3 kW system."
+  }
+];
+---
+
+<BaseLayout title={title} description={description} faqList={faqs}>
+  <SolarCalculator 
+    client:load 
+    initialStateId="gj"
+    pageTitle="Gujarat Solar Rooftop Calculator (Surya Gujarat & DISCOMs)"
+    pageSubtitle="Estimate your solar generation, PM Surya Ghar subsidy, and power bill savings for Ahmedabad, Surat, Vadodara, Rajkot, and all Gujarat cities."
+  />
+
+  <section class="max-w-5xl mx-auto px-4 py-12">
+    <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display mb-4">
+        Gujarat Solar Energy Advantage
+      </h2>
+      <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+        Gujarat enjoys India's highest solar irradiance with over <strong>300 clear sunny days</strong> every year. The state's unified power utilities (DGVCL, MGVCL, PGVCL, UGVCL, and Torrent Power) provide streamlined digital net-metering approvals.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-5 rounded-2xl bg-emerald-50 border border-emerald-200">
+          <h4 class="font-bold text-slate-900 text-base mb-2">☀️ 5.2 Peak Sun Hours Per Day</h4>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Generates 15% to 20% more electricity units per kilowatt installed compared to the national average, ensuring capital recovery in under 3 years.
+          </p>
+        </div>
+        <div class="p-5 rounded-2xl bg-emerald-50 border border-emerald-200">
+          <h4 class="font-bold text-slate-900 text-base mb-2">⚡ Rapid Net-Metering Grid Synchronization</h4>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Fast bi-directional meter commissioning and automated energy credits reflected on your regular bimonthly electricity bill.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

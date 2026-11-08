@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SolarCalculator from '../components/SolarCalculator';
+
+const title = "1 kW Solar Panel Price with Subsidy (2026) - Cost & Electricity Savings";
+const description = "Calculate 1 kW solar panel price in India with ₹30,000 PM Surya Ghar subsidy. See turnkey installation cost, rooftop area (100 sq ft), daily 4-5 units generation, and savings.";
+
+const faqs = [
+  {
+    question: "How much is the subsidy for a 1 kW solar system?",
+    answer: "Under the PM Surya Ghar: Muft Bijli Yojana, a flat subsidy of ₹30,000 is provided for a 1 kW residential solar plant."
+  },
+  {
+    question: "What is the net cost of a 1 kW solar setup?",
+    answer: "A standard 1 kW on-grid setup costs around ₹50,000 to ₹55,000. After the ₹30,000 government subsidy, your net cost is only ₹20,000 to ₹25,000."
+  },
+  {
+    question: "How much electricity does a 1 kW solar system produce?",
+    answer: "A 1 kW solar panel system produces about 4 to 4.5 units of electricity per day, or approximately 120 to 135 units every month."
+  }
+];
+---
+
+<BaseLayout title={title} description={description} faqList={faqs}>
+  <SolarCalculator 
+    client:load 
+    initialCapacity={1}
+    pageTitle="1 kW Solar Panel Price & Subsidy Calculator (2026)"
+    pageSubtitle="Ideal for small 1BHK/2BHK households with monthly electricity bills under ₹1,200. Eligible for ₹30,000 central subsidy."
+  />
+
+  <section class="max-w-5xl mx-auto px-4 py-12">
+    <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display mb-4">
+        1 kW Solar System: The Ideal Starter Solar Plant
+      </h2>
+      <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+        A 1 kW solar system is compact, affordable, and requires only <strong>~100 square feet of roof space</strong>. It is designed for households with modest electrical loads such as ceiling fans, LED lights, a refrigerator, and a television.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-5 rounded-2xl bg-emerald-50 border border-emerald-200">
+          <div class="text-xs font-bold text-emerald-800 uppercase">Turnkey Benchmark Cost</div>
+          <div class="text-2xl font-bold text-slate-900 mt-1 mb-1">₹50,000 – ₹55,000</div>
+          <p class="text-xs text-slate-600">Includes panels, inverter, structure & wiring.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-200">
+          <div class="text-xs font-bold text-amber-800 uppercase">Govt. DBT Subsidy</div>
+          <div class="text-2xl font-bold text-amber-600 mt-1 mb-1">₹30,000 Flat</div>
+          <p class="text-xs text-slate-600">Directly credited to your bank account.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-blue-50 border border-blue-200">
+          <div class="text-xs font-bold text-blue-800 uppercase">Net Cost to You</div>
+          <div class="text-2xl font-bold text-blue-800 mt-1 mb-1">₹20,000 – ₹25,000</div>
+          <p class="text-xs text-slate-600">Recovers full capital cost in ~2.5 years!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

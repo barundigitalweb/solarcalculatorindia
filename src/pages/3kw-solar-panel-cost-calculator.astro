@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SolarCalculator from '../components/SolarCalculator';
+
+const title = "3 kW Solar Panel Price with Subsidy in India (2026) - Cost & Savings Calculator";
+const description = "Calculate 3 kW Solar Panel Price in India with ₹78,000 PM Surya Ghar Subsidy. See turnkey installation cost, rooftop area (300 sq ft), monthly 360 units generation, and 3-year payback.";
+
+const faqs = [
+  {
+    question: "How much does a 3 kW solar system cost with subsidy in India?",
+    answer: "A standard on-grid 3 kW solar system benchmark cost is around ₹1,50,000 to ₹1,65,000. With the maximum Central Government PM Surya Ghar subsidy of ₹78,000, your net out-of-pocket investment is only ₹72,000 to ₹87,000."
+  },
+  {
+    question: "How many units does a 3 kW solar panel produce per day?",
+    answer: "In India, a 3 kW solar setup produces between 12 and 14 units (kWh) of electricity per day on average, resulting in approximately 360 to 400 units every month."
+  },
+  {
+    question: "Can a 3 kW solar system run 1.5 ton AC and refrigerator?",
+    answer: "Yes! A 3 kW on-grid solar plant generates enough power to comfortably offset the energy consumption of a 1.5-ton inverter air conditioner, a double-door refrigerator, washing machine, LED lights, fans, and television."
+  }
+];
+---
+
+<BaseLayout title={title} description={description} faqList={faqs}>
+  <SolarCalculator 
+    client:load 
+    initialCapacity={3}
+    pageTitle="3 kW Solar Panel System — Cost, Subsidy & Savings Calculator"
+    pageSubtitle="India's most popular residential solar configuration. Eligible for the maximum ₹78,000 PM Surya Ghar cash subsidy."
+  />
+
+  <section class="max-w-5xl mx-auto px-4 py-12">
+    <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display mb-4">
+        Why 3 kW is the Sweet Spot for Indian Households
+      </h2>
+      <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+        Over 65% of residential solar installations in India are <strong>3 kW on-grid systems</strong>. Here is why the 3 kW plant offers the highest return on investment:
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200">
+          <h4 class="font-bold text-slate-900 text-base mb-2">🎯 Maximum ₹78,000 Subsidy Utilization</h4>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            The Government of India caps the PM Surya Ghar subsidy at ₹78,000. By installing a 3 kW system, you extract the maximum financial assistance of 50% of the benchmark equipment cost.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200">
+          <h4 class="font-bold text-slate-900 text-base mb-2">⚡ 300 Free Units / Month Target</h4>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            The scheme aims to eliminate electricity bills up to 300 units per month. A 3 kW setup produces ~360 units per month, completely wiping out typical electricity bills of ₹2,500 to ₹3,500.
+          </p>
+        </div>
+      </div>
+
+      <h3 class="text-xl font-bold text-slate-900 mb-4">3 kW System Equipment Specifications</h3>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs sm:text-sm border-collapse">
+          <thead>
+            <tr class="bg-slate-100 text-slate-800">
+              <th class="p-3 font-bold">Component</th>
+              <th class="p-3 font-bold">Typical Specification</th>
+              <th class="p-3 font-bold">Warranty</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 text-slate-700">
+            <tr>
+              <td class="p-3 font-medium">Solar Panels</td>
+              <td class="p-3">6 x 540W or 550W Mono PERC / Bi-facial DCR Modules</td>
+              <td class="p-3 font-semibold text-emerald-600">25-Year Performance Warranty</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-medium">Grid-Tie Inverter</td>
+              <td class="p-3">3 kW Single Phase On-Grid String Inverter (WiFi enabled)</td>
+              <td class="p-3">5 to 10-Year Warranty</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-medium">Mounting Structure</td>
+              <td class="p-3">Hot-Dip Galvanized Iron (GI) or Anodized Aluminium (wind rating 150 km/h)</td>
+              <td class="p-3">15-Year Structural Warranty</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-medium">Net Meter</td>
+              <td class="p-3">Bi-directional Smart Meter approved by DISCOM</td>
+              <td class="p-3">DISCOM Standard</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

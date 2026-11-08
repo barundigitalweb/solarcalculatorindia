@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SolarCalculator from '../components/SolarCalculator';
+
+const title = "SBI Solar Roof Loan EMI Calculator (7.0% Interest) - PM Surya Ghar Collateral-Free Loan";
+const description = "Calculate SBI Solar Rooftop Loan EMI for PM Surya Ghar Yojana. Check 7.0% repo-linked interest rate, zero collateral, 5-year repayment schedule, and loan eligibility.";
+
+const faqs = [
+  {
+    question: "What is the interest rate for SBI Surya Ghar Solar Loan?",
+    answer: "State Bank of India (SBI) offers solar rooftop loans under PM Surya Ghar Yojana at a special repo-linked interest rate of 7.0% per annum (Repo Rate + 0.50%) for systems up to 3 kW."
+  },
+  {
+    question: "Is collateral or mortgage required for a 3 kW solar loan?",
+    answer: "No! For residential solar systems up to 3 kW, SBI and Canara Bank provide 100% collateral-free loans without any property hypothecation. Only basic KYC and electricity bill are required."
+  },
+  {
+    question: "Is the solar loan EMI less than the monthly electricity bill savings?",
+    answer: "Yes! For a standard 3 kW system, the 5-year monthly loan EMI is approximately ₹2,020 per month. However, the solar panels generate electricity worth ₹2,700 to ₹3,200 per month, meaning your net bill is immediately negative (pure cash surplus) from Day 1!"
+  }
+];
+---
+
+<BaseLayout title={title} description={description} faqList={faqs}>
+  <SolarCalculator 
+    client:load 
+    pageTitle="SBI & Bank Solar Loan EMI Calculator (7.0% Interest Scheme)"
+    pageSubtitle="Calculate your monthly loan repayment for rooftop solar. Zero collateral required for systems up to 3 kW under PM Surya Ghar."
+  />
+
+  <section class="max-w-5xl mx-auto px-4 py-12">
+    <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm mb-8">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display mb-4">
+        PM Surya Ghar Collateral-Free Bank Financing Scheme (2026)
+      </h2>
+      <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+        To ensure that zero Indian families are excluded due to upfront capital constraints, the Ministry of Finance partnered with major public sector banks (SBI, Canara Bank, PNB, Bank of Baroda) to launch a specialized collateral-free green loan facility:
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="p-5 rounded-2xl bg-emerald-50 border border-emerald-200">
+          <div class="text-xs font-bold text-emerald-800 uppercase">Concessional Interest</div>
+          <div class="text-3xl font-bold text-emerald-700 mt-1 mb-1">7.0% p.a.</div>
+          <p class="text-xs text-slate-600">Repo Rate + 0.50% markup. Lowest interest rate in Indian retail banking.</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-blue-50 border border-blue-200">
+          <div class="text-xs font-bold text-blue-800 uppercase">Zero Collateral</div>
+          <div class="text-3xl font-bold text-blue-800 mt-1 mb-1">Up to 3 kW</div>
+          <p class="text-xs text-slate-600">No home mortgage or asset security needed. Simple digital sanction.</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-200">
+          <div class="text-xs font-bold text-amber-800 uppercase">Flexible Tenure</div>
+          <div class="text-3xl font-bold text-amber-700 mt-1 mb-1">Up to 7 Years</div>
+          <p class="text-xs text-slate-600">Standard 5-year or 7-year monthly EMI schedule with zero prepayment penalty.</p>
+        </div>
+      </div>
+
+      <h3 class="text-xl font-bold text-slate-900 mb-4">Sample 5-Year Loan Repayment vs Monthly Savings</h3>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs sm:text-sm border-collapse">
+          <thead>
+            <tr class="bg-slate-100 text-slate-800">
+              <th class="p-3 font-bold">System Size</th>
+              <th class="p-3 font-bold">Total Cost</th>
+              <th class="p-3 font-bold text-emerald-700">Govt. Subsidy</th>
+              <th class="p-3 font-bold">Loan Amount (Net)</th>
+              <th class="p-3 font-bold">5-Yr Monthly EMI (@ 7%)</th>
+              <th class="p-3 font-bold text-emerald-700">Monthly Bill Saved</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 text-slate-700">
+            <tr>
+              <td class="p-3 font-semibold text-slate-900">1 kW System</td>
+              <td class="p-3">₹55,000</td>
+              <td class="p-3 text-emerald-600 font-bold">₹30,000</td>
+              <td class="p-3">₹25,000</td>
+              <td class="p-3 font-semibold">~₹495 / mo</td>
+              <td class="p-3 font-bold text-emerald-600">~₹900 / mo (Net Profit!)</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-semibold text-slate-900">2 kW System</td>
+              <td class="p-3">₹1,10,000</td>
+              <td class="p-3 text-emerald-600 font-bold">₹60,000</td>
+              <td class="p-3">₹50,000</td>
+              <td class="p-3 font-semibold">~₹990 / mo</td>
+              <td class="p-3 font-bold text-emerald-600">~₹1,800 / mo (Net Profit!)</td>
+            </tr>
+            <tr class="bg-emerald-50/70 font-semibold">
+              <td class="p-3 text-emerald-950">3 kW System</td>
+              <td class="p-3 text-emerald-900">₹1,65,000</td>
+              <td class="p-3 text-emerald-700 font-bold">₹78,000</td>
+              <td class="p-3 text-emerald-950">₹87,000</td>
+              <td class="p-3 text-slate-900 font-bold">~₹1,720 / mo</td>
+              <td class="p-3 font-bold text-emerald-700">~₹2,700 / mo (₹1,000+ Profit!)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-slate-500 mt-3">
+        * As demonstrated above, your monthly solar energy generation savings exceed your bank EMI from Month 1, creating an instant positive cashflow!
+      </p>
+    </div>
+  </section>
+</BaseLayout>

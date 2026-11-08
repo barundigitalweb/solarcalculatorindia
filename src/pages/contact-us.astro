@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "Contact Us - Solar Calculator India | Inquiries & Feedback";
+const description = "Contact the SolarCalculatorIndia.com research team for questions, tariff updates, installer partnerships, or technical feedback.";
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="max-w-3xl mx-auto px-4 py-16">
+    <div class="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-sm">
+      
+      <div class="text-center mb-8">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 font-display mb-2">
+          Contact Our Team
+        </h1>
+        <p class="text-sm text-slate-500 max-w-md mx-auto">
+          Have a question about solar tariffs, want to suggest an updated DISCOM slab, or partner as an MNRE-certified installer? We'd love to hear from you.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div class="p-5 rounded-2xl bg-emerald-50 border border-emerald-200 text-center">
+          <span class="text-xs font-bold text-emerald-800 uppercase block mb-1">General Inquiries</span>
+          <p class="text-sm font-semibold text-slate-800">support@solarcalculatorindia.com</p>
+          <span class="text-[11px] text-slate-500 block mt-1">Average response within 24-48 hours</span>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-200 text-center">
+          <span class="text-xs font-bold text-amber-800 uppercase block mb-1">Installer Partnerships</span>
+          <p class="text-sm font-semibold text-slate-800">partners@solarcalculatorindia.com</p>
+          <span class="text-[11px] text-slate-500 block mt-1">For ALMM / DCR empaneled solar vendors</span>
+        </div>
+      </div>
+
+      <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 text-xs text-slate-500 leading-relaxed">
+        <strong>⚠️ Please Note:</strong> If you have an inquiry regarding an active subsidy application status, pending net-metering inspection, or Direct Benefit Transfer (DBT) payment delay from the Government of India, please contact your local DISCOM nodal officer or call the national PM Surya Ghar toll-free helpline at <strong>15555</strong> / visit <a href="https://pmsuryaghar.gov.in" target="_blank" rel="noopener noreferrer" class="text-emerald-600 underline font-medium">pmsuryaghar.gov.in</a>.
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>

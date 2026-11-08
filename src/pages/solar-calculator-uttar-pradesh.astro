@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SolarCalculator from '../components/SolarCalculator';
+
+const title = "Solar Calculator Uttar Pradesh 2026 - UPPCL & UPNEDA State Top-Up Subsidy";
+const description = "Calculate rooftop solar cost in Uttar Pradesh. UPPCL net metering rules, Central ₹78,000 subsidy plus UP State Government ₹30,000 top-up subsidy via UPNEDA.";
+
+const faqs = [
+  {
+    question: "Does Uttar Pradesh offer an additional state subsidy for solar?",
+    answer: "Yes! The Government of Uttar Pradesh through UPNEDA provides an additional state top-up subsidy of up to ₹30,000 (₹15,000 per kW up to 2 kW) in addition to the Central Government's ₹78,000 subsidy under PM Surya Ghar Yojana!"
+  },
+  {
+    question: "What is the total subsidy for a 3 kW solar plant in UP?",
+    answer: "In Uttar Pradesh, a 3 kW solar plant receives ₹78,000 Central Subsidy + ₹30,000 UP State Subsidy, bringing your total government assistance to an incredible ₹1,08,000!"
+  }
+];
+---
+
+<BaseLayout title={title} description={description} faqList={faqs}>
+  <SolarCalculator 
+    client:load 
+    initialStateId="up"
+    pageTitle="Uttar Pradesh Solar Calculator (UPPCL & UPNEDA)"
+    pageSubtitle="Calculate Central Subsidy (₹78,000) + UP State Top-Up Subsidy (₹30,000) for Noida, Lucknow, Ghaziabad, Kanpur, Varanasi, and all UP districts."
+  />
+
+  <section class="max-w-5xl mx-auto px-4 py-12">
+    <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display mb-4">
+        Uttar Pradesh: India's Highest Subsidized Rooftop Solar State
+      </h2>
+      <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+        Under the UP Solar Energy Policy, the Uttar Pradesh New and Renewable Energy Development Agency (UPNEDA) and UPPCL provide the country's most generous combined subsidy package:
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-5 rounded-2xl bg-emerald-50 border border-emerald-200">
+          <div class="text-xs font-bold text-emerald-800 uppercase">Central Govt. Subsidy</div>
+          <div class="text-2xl font-bold text-emerald-700 mt-1 mb-1">Up to ₹78,000</div>
+          <p class="text-xs text-slate-600">PM Surya Ghar Central Financial Assistance directly via DBT.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-200">
+          <div class="text-xs font-bold text-amber-800 uppercase">UP State Top-Up Subsidy</div>
+          <div class="text-2xl font-bold text-amber-700 mt-1 mb-1">Up to ₹30,000 Extra</div>
+          <p class="text-xs text-slate-600">State grant credited by UPNEDA for residential homes.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-blue-50 border border-blue-200">
+          <div class="text-xs font-bold text-blue-800 uppercase">Combined Total Benefit</div>
+          <div class="text-2xl font-bold text-blue-900 mt-1 mb-1">₹1,08,000 Max!</div>
+          <p class="text-xs text-slate-600">Covers over 65% of the total system cost!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
