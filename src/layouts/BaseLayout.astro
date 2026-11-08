@@ -105,6 +105,14 @@ const faqSchema = faqList.length > 0 ? {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
 
+    <!-- Google Tag Manager / Analytics (GTM-MCCTJNKT) -->
+    <script is:inline async src="https://www.googletagmanager.com/gtm.js?id=GTM-MCCTJNKT"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    </script>
+
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(webAppSchema)} />
@@ -113,6 +121,11 @@ const faqSchema = faqList.length > 0 ? {
     )}
   </head>
   <body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col selection:bg-emerald-500 selection:text-white">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MCCTJNKT"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <Navbar />
     
     <main class="flex-grow">
