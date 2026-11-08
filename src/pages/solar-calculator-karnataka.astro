@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SolarCalculator from '../components/SolarCalculator';
+
+const title = "Solar Calculator Karnataka 2026 - BESCOM, MESCOM & Rooftop Subsidy Guide";
+const description = "Calculate rooftop solar cost and subsidy in Karnataka. BESCOM, MESCOM, HESCOM net metering guidelines, high electricity tariff savings (₹8.10/unit), and ₹78,000 PM Surya Ghar cash subsidy.";
+
+const faqs = [
+  {
+    question: "How much does a rooftop solar plant save on BESCOM electricity bills?",
+    answer: "With Karnataka's average domestic electricity tariff at approximately ₹8.10 per unit, a standard 3 kW system generating ~360 units per month delivers over ₹2,900 in monthly power bill savings, or upwards of ₹35,000 annually."
+  },
+  {
+    question: "What is the rooftop solar capacity limit under BESCOM?",
+    answer: "Under current Karnataka Electricity Regulatory Commission (KERC) and BESCOM rooftop guidelines, domestic consumers can install rooftop solar plants up to 100% of their sanctioned electricity meter load."
+  },
+  {
+    question: "What is the PM Surya Ghar subsidy in Bengaluru, Mysuru, and Mangaluru?",
+    answer: "Homeowners across all Karnataka DISCOMs (BESCOM, MESCOM, HESCOM, GESCOM, CESC) receive up to ₹78,000 direct bank transfer (DBT) subsidy for residential rooftop installations of 3 kW and above."
+  }
+];
+---
+
+<BaseLayout title={title} description={description} faqList={faqs}>
+  <SolarCalculator 
+    client:load 
+    initialStateId="ka"
+    pageTitle="Karnataka Solar Rooftop Calculator (BESCOM & All DISCOMs)"
+    pageSubtitle="Estimate solar generation, PM Surya Ghar subsidy, and bill savings for Bengaluru, Mysuru, Mangaluru, Hubballi, Belagavi, and all Karnataka districts."
+  />
+
+  <section class="max-w-5xl mx-auto px-4 py-12">
+    <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display mb-4">
+        Karnataka Rooftop Solar Economics (BESCOM & KERC)
+      </h2>
+      <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+        Karnataka has consistently ranked among India's foremost renewable energy pioneers. With domestic electricity tariffs in Bengaluru and southern Karnataka averaging <strong>₹8.10 per unit</strong>, residential solar yields an exceptional internal rate of return (IRR) exceeding 30%.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-5 rounded-2xl bg-emerald-50 border border-emerald-200">
+          <h4 class="font-bold text-slate-900 text-base mb-2">⚡ High-Tariff Advantage (₹8.10/unit)</h4>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            High domestic power slabs ensure rapid capital recovery. A 3 kW setup pays for itself in under 3 years under BESCOM net metering.
+          </p>
+        </div>
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-200">
+          <h4 class="font-bold text-slate-900 text-base mb-2">☀️ 4.7 Peak Sunshine Hours</h4>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Consistent southern plateau sunshine provides reliable year-round photovoltaic generation across Bengaluru, Mysuru, and central Karnataka.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

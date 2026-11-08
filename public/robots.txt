@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://solarcalculatorindia.com/sitemap.xml
+Sitemap: https://solarcalculatorindia.com/sitemap-index.xml

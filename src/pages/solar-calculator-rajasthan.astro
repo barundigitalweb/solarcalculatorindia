@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SolarCalculator from '../components/SolarCalculator';
+
+const title = "Solar Calculator Rajasthan 2026 - JVVNL, AVVNL & JdVVNL Subsidy Guide";
+const description = "Calculate rooftop solar cost and subsidy in Rajasthan. High solar radiation (5.5 peak sun hours), JVVNL, AVVNL, JdVVNL net metering, ₹78,000 PM Surya Ghar cash subsidy.";
+
+const faqs = [
+  {
+    question: "Why is Rajasthan the best state for rooftop solar in India?",
+    answer: "Rajasthan receives India's highest solar radiation with an outstanding average of 5.5 peak sunshine hours per day and over 325 clear sunny days annually. This results in the highest electricity generation per kilowatt installed anywhere in the country."
+  },
+  {
+    question: "What is the solar panel subsidy in Jaipur, Jodhpur, and Udaipur?",
+    answer: "Residential consumers in Rajasthan under JVVNL, AVVNL, and JdVVNL are entitled to a Central Government cash subsidy of ₹30,000 for 1 kW, ₹60,000 for 2 kW, and a maximum of ₹78,000 for 3 kW and above through the national PM Surya Ghar portal."
+  },
+  {
+    question: "How long is the payback period for rooftop solar in Rajasthan?",
+    answer: "Due to exceptional solar irradiance and standard domestic tariffs of ₹7.80/unit, residential systems in Rajasthan achieve full capital breakeven in just 2.6 to 3.0 years, followed by 22+ years of virtually free solar power."
+  }
+];
+---
+
+<BaseLayout title={title} description={description} faqList={faqs}>
+  <SolarCalculator 
+    client:load 
+    initialStateId="rj"
+    pageTitle="Rajasthan Solar Rooftop Calculator (JVVNL, AVVNL & JdVVNL)"
+    pageSubtitle="Estimate rooftop solar generation, PM Surya Ghar subsidy, and power bill savings for Jaipur, Jodhpur, Kota, Bikaner, Udaipur, and all Rajasthan districts."
+  />
+
+  <section class="max-w-5xl mx-auto px-4 py-12">
+    <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display mb-4">
+        Rajasthan: India's Solar Capital Advantage
+      </h2>
+      <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+        With the highest solar radiation in India, Rajasthan provides the most favorable conditions for rooftop photovoltaic systems. Whether you are connected to <strong>Jaipur Vidyut Vitran Nigam (JVVNL)</strong>, <strong>Ajmer Vidyut Vitran Nigam (AVVNL)</strong>, or <strong>Jodhpur Vidyut Vitran Nigam (JdVVNL)</strong>, on-grid solar guarantees immense financial savings.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-200">
+          <h4 class="font-bold text-slate-900 text-base mb-2">☀️ 5.5 Peak Sun Hours / Day</h4>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            A 3 kW solar plant in Rajasthan generates upwards of 400 to 420 units per month, significantly outperforming installations in northern and coastal states.
+          </p>
+        </div>
+        <div class="p-5 rounded-2xl bg-emerald-50 border border-emerald-200">
+          <h4 class="font-bold text-slate-900 text-base mb-2">⚡ Net-Metering Tariff Offset</h4>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            With average higher-slab power tariffs touching ₹7.80 per unit, rooftop solar completely eliminates domestic summer electricity bills driven by air conditioners and desert coolers.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

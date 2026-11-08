@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useRef } from 'react';
+import confetti from 'canvas-confetti';
 import { 
   Sun, 
   Zap, 
@@ -46,8 +47,20 @@ export default function SolarCalculator({
   const [leadForm, setLeadForm] = useState({ name: '', phone: '', city: '', pincode: '' });
   const [leadSubmitted, setLeadSubmitted] = useState<boolean>(false);
   const [isExportingPdf, setIsExportingPdf] = useState<boolean>(false);
+  const [isSubmittingLead, setIsSubmittingLead] = useState<boolean>(false);
 
   const reportRef = useRef<HTMLDivElement>(null);
+
+  // Confetti celebratory burst
+  const triggerCelebration = () => {
+    try {
+      confetti({
+        particleCount: 75,
+        spread: 65,
+        origin: { y: 0.6 }
+      });
+    } catch {}
+  };
 
   // Compute metrics dynamically
   const metrics: SolarCalculationResult = useMemo(() => {
@@ -156,6 +169,7 @@ export default function SolarCalculator({
       doc.text('Generated via SolarCalculatorIndia.com - India\'s #1 Free Rooftop Solar & Subsidy Estimation Engine.', 14, 285);
       
       doc.save(`Solar-Feasibility-Report-${metrics.systemSizeKw}kW.pdf`);
+      triggerCelebration();
     } catch (e) {
       console.error('Error generating PDF:', e);
       alert('Unable to generate PDF directly. Please print screen or save as PDF via your browser print dialog.');
@@ -164,19 +178,54 @@ export default function SolarCalculator({
     }
   };
 
-  const handleLeadSubmit = (e: React.FormEvent) => {
+  const handleLeadSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!leadForm.phone || leadForm.phone.length < 10) {
-      alert('Please enter a valid 10-digit mobile number.');
+    const cleanPhone = leadForm.phone.trim();
+    if (!/^[6-9]\d{9}$/.test(cleanPhone)) {
+      alert('Please enter a valid 10-digit Indian mobile number (starting with 6, 7, 8, or 9).');
       return;
     }
+
+    setIsSubmittingLead(true);
+    const leadPayload = {
+      name: leadForm.name.trim(),
+      phone: cleanPhone,
+      city: leadForm.city.trim(),
+      pincode: leadForm.pincode.trim(),
+      systemSizeKw: metrics.systemSizeKw,
+      state: currentState.name,
+      discom: currentState.discom,
+      totalSubsidy: metrics.totalSubsidy,
+      netCost: metrics.netCostToUser,
+      monthlySavings: metrics.monthlySavingsRs,
+      timestamp: new Date().toISOString()
+    };
+
     // Save to local storage for privacy / persistence
     try {
       const existing = JSON.parse(localStorage.getItem('solar_leads') || '[]');
-      existing.push({ ...leadForm, timestamp: new Date().toISOString(), systemSizeKw: metrics.systemSizeKw, state: currentState.name });
+      existing.push(leadPayload);
       localStorage.setItem('solar_leads', JSON.stringify(existing));
     } catch {}
-    setLeadSubmitted(true);
+
+    // Dispatch to Webhook if configured (via window or environment variable)
+    try {
+      const webhookUrl = (typeof window !== 'undefined' && (window as any).SOLAR_LEAD_WEBHOOK_URL) ||
+        (import.meta as any).env?.PUBLIC_LEAD_WEBHOOK_URL;
+      if (webhookUrl) {
+        await fetch(webhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(leadPayload)
+        });
+      }
+    } catch (err) {
+      console.warn('Webhook dispatch failed or not configured, stored in localStorage:', err);
+    } finally {
+      setIsSubmittingLead(false);
+      setLeadSubmitted(true);
+      triggerCelebration();
+    }
   };
 
   return (
@@ -368,12 +417,15 @@ export default function SolarCalculator({
                     <button
                       key={kw}
                       type="button"
-                      onClick={() => setCapacity(kw)}
-                      className={`text-xs px-3 py-1 rounded-lg border transition-all ${
+                      onClick={() => {
+                        setCapacity(kw);
+                        if (kw >= 3) triggerCelebration();
+                      }}
+                      className={`text-xs px-3 py-1 rounded-lg border transition-all cursor-pointer ${
                         capacity === kw ? 'bg-emerald-50 border-emerald-500 text-emerald-700 font-semibold' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'
                       }`}
                     >
-                      {kw} kW {kw === 3 && '🔥'}
+                      {kw} kW {kw === 3 && '🔥 (₹78k Subsidy)'}
                     </button>
                   ))}
                 </div>
@@ -605,6 +657,18 @@ export default function SolarCalculator({
                   </p>
                 </div>
 
+                {/* Calculation Summary Pill in Quote Modal */}
+                <div className="p-3 bg-emerald-50 rounded-2xl border border-emerald-200/80 mb-4 text-xs text-emerald-950 flex items-center justify-between">
+                  <div>
+                    <span className="font-bold text-slate-900 block">{metrics.systemSizeKw} kW Rooftop System</span>
+                    <span className="text-emerald-700">₹{metrics.totalSubsidy.toLocaleString('en-IN')} Govt Subsidy ({currentState.name})</span>
+                  </div>
+                  <div className="text-right">
+                    <span className="font-extrabold text-emerald-800 text-sm block">~₹{metrics.monthlySavingsRs.toLocaleString('en-IN')}</span>
+                    <span className="text-[10px] text-slate-500">monthly save</span>
+                  </div>
+                </div>
+
                 <form onSubmit={handleLeadSubmit} className="space-y-3.5">
                   <div>
                     <label className="text-xs font-semibold text-slate-700 block mb-1">Your Full Name</label>
@@ -663,9 +727,17 @@ export default function SolarCalculator({
 
                   <button
                     type="submit"
-                    className="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow-lg shadow-emerald-600/20 text-sm transition-all cursor-pointer"
+                    disabled={isSubmittingLead}
+                    className="w-full py-3 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-60 text-white font-bold rounded-xl shadow-lg shadow-emerald-600/20 text-sm transition-all cursor-pointer flex items-center justify-center gap-2"
                   >
-                    Submit & Compare Quotes Free
+                    {isSubmittingLead ? (
+                      <>
+                        <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                        <span>Connecting Verified Installers...</span>
+                      </>
+                    ) : (
+                      <span>Submit & Compare Quotes Free</span>
+                    )}
                   </button>
                 </form>
               </div>
