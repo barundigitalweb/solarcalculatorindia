@@ -285,7 +285,7 @@ export default function SolarCalculator({
             <div className="flex items-center gap-4 text-xs sm:text-sm text-emerald-100 bg-emerald-900/40 px-4 py-2.5 rounded-xl border border-emerald-500/20">
               <div>
                 <div className="flex items-center gap-1.5">
-                  <span className="text-emerald-300">Avg. Tariff:</span>
+                  <span className="text-emerald-300">Electricity Rate:</span>
                   <button
                     type="button"
                     onClick={() => setIsEditingTariff(!isEditingTariff)}
