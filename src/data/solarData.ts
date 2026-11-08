@@ -17,12 +17,100 @@ export const INDIAN_STATES: StateDiscom[] = [
     sunHours: 4.5,
   },
   {
-    id: 'wb',
-    name: 'West Bengal',
-    discom: 'WBSEDCL / CESC',
-    avgTariff: 7.6,
-    sunHours: 4.4,
-    stateSubsidyNote: 'Net metering available for 1kW+ connected loads.'
+    id: 'tg-ap',
+    name: 'Andhra Pradesh & Telangana',
+    discom: 'TSSPDCL / TSNPDCL / APEPDCL / APSPDCL',
+    avgTariff: 7.3,
+    sunHours: 4.8,
+    stateSubsidyNote: 'Net metering available with seamless online portal applications.'
+  },
+  {
+    id: 'as',
+    name: 'Assam',
+    discom: 'APDCL',
+    avgTariff: 7.2,
+    sunHours: 4.2,
+    stateSubsidyNote: 'APDCL streamlined rooftop solar and net metering portal.'
+  },
+  {
+    id: 'br',
+    name: 'Bihar',
+    discom: 'NBPDCL / SBPDCL',
+    avgTariff: 7.3,
+    sunHours: 4.5,
+    stateSubsidyNote: 'BREDA facilitation for rural and semi-urban rooftop installations.'
+  },
+  {
+    id: 'cg',
+    name: 'Chhattisgarh',
+    discom: 'CSPDCL',
+    avgTariff: 6.8,
+    sunHours: 4.7,
+    stateSubsidyNote: 'CREDA fast-track rooftop solar facilitation.'
+  },
+  {
+    id: 'dl',
+    name: 'Delhi NCR',
+    discom: 'BSES Rajdhani / BSES Yamuna / TPDDL',
+    avgTariff: 7.2,
+    sunHours: 4.6,
+    stateSubsidyNote: 'Generation Based Incentive (GBI) of ₹3/unit for 3 years under Delhi Solar Policy 2024.'
+  },
+  {
+    id: 'ga',
+    name: 'Goa',
+    discom: 'Electricity Dept Goa',
+    avgTariff: 5.8,
+    sunHours: 4.8,
+    stateSubsidyNote: 'Joint Electricity Regulatory Commission (JERC) net metering framework.'
+  },
+  {
+    id: 'gj',
+    name: 'Gujarat',
+    discom: 'UGVCL / DGVCL / PGVCL / MGVCL / Torrent',
+    avgTariff: 6.8,
+    sunHours: 5.2,
+    stateSubsidyNote: 'Fast-track net-metering approval under Surya Gujarat portal.'
+  },
+  {
+    id: 'hr',
+    name: 'Haryana',
+    discom: 'DHBVN / UHBVN',
+    avgTariff: 7.0,
+    sunHours: 4.7,
+    stateSubsidyNote: 'Haryana offers simple bi-directional net-metering protocol.'
+  },
+  {
+    id: 'jh',
+    name: 'Jharkhand',
+    discom: 'JBVNL / JUSCO',
+    avgTariff: 6.9,
+    sunHours: 4.6,
+    stateSubsidyNote: 'JREDA rooftop solar net-metering facilitation.'
+  },
+  {
+    id: 'ka',
+    name: 'Karnataka',
+    discom: 'BESCOM / MESCOM / HESCOM / GESCOM',
+    avgTariff: 8.1,
+    sunHours: 4.7,
+    stateSubsidyNote: 'Net metering permitted up to 100% of sanctioned load.'
+  },
+  {
+    id: 'kl',
+    name: 'Kerala',
+    discom: 'KSEB',
+    avgTariff: 7.0,
+    sunHours: 4.3,
+    stateSubsidyNote: 'KSEB Soura scheme integration with PM Surya Ghar.'
+  },
+  {
+    id: 'mp',
+    name: 'Madhya Pradesh',
+    discom: 'MPPKVVCL (East / West / Central)',
+    avgTariff: 7.5,
+    sunHours: 4.9,
+    stateSubsidyNote: 'MP Urja Vikas Nigam offers streamlined subsidy processing.'
   },
   {
     id: 'mh',
@@ -31,6 +119,38 @@ export const INDIAN_STATES: StateDiscom[] = [
     avgTariff: 9.2,
     sunHours: 4.8,
     stateSubsidyNote: 'High slab tariffs make solar payback fastest in Maharashtra (< 3 years).'
+  },
+  {
+    id: 'od',
+    name: 'Odisha',
+    discom: 'TPCODL / TPNODL / TPSODL / TPWODL',
+    avgTariff: 6.7,
+    sunHours: 4.6,
+    stateSubsidyNote: 'OREDA digital rooftop net-metering processing.'
+  },
+  {
+    id: 'pb',
+    name: 'Punjab',
+    discom: 'PSPCL',
+    avgTariff: 6.9,
+    sunHours: 4.7,
+    stateSubsidyNote: 'Net-metering available for domestic connections.'
+  },
+  {
+    id: 'rj',
+    name: 'Rajasthan',
+    discom: 'JVVNL / AVVNL / JdVVNL',
+    avgTariff: 7.8,
+    sunHours: 5.5,
+    stateSubsidyNote: 'Highest solar radiation state in India with up to 5.5 peak sun hours.'
+  },
+  {
+    id: 'tn',
+    name: 'Tamil Nadu',
+    discom: 'TANGEDCO',
+    avgTariff: 6.8,
+    sunHours: 4.9,
+    stateSubsidyNote: 'Feed-in tariff available for surplus energy exported to grid.'
   },
   {
     id: 'up',
@@ -42,92 +162,20 @@ export const INDIAN_STATES: StateDiscom[] = [
     stateSubsidyNote: 'UP State Government provides up to ₹30,000 state top-up subsidy via UPNEDA on top of Central subsidy!'
   },
   {
-    id: 'dl',
-    name: 'Delhi NCR',
-    discom: 'BSES Rajdhani / BSES Yamuna / TPDDL',
-    avgTariff: 7.2,
-    sunHours: 4.6,
-    stateSubsidyNote: 'Generation Based Incentive (GBI) of ₹3/unit for 3 years under Delhi Solar Policy 2024.'
-  },
-  {
-    id: 'gj',
-    name: 'Gujarat',
-    discom: 'UGVCL / DGVCL / PGVCL / MGVCL / Torrent',
-    avgTariff: 6.8,
-    sunHours: 5.2,
-    stateSubsidyNote: 'Fast-track net-metering approval under Surya Gujarat portal.'
-  },
-  {
-    id: 'ka',
-    name: 'Karnataka',
-    discom: 'BESCOM / MESCOM / HESCOM / GESCOM',
-    avgTariff: 8.1,
-    sunHours: 4.7,
-    stateSubsidyNote: 'Net metering permitted up to 100% of sanctioned load.'
-  },
-  {
-    id: 'tn',
-    name: 'Tamil Nadu',
-    discom: 'TANGEDCO',
-    avgTariff: 6.8,
-    sunHours: 4.9,
-    stateSubsidyNote: 'Feed-in tariff available for surplus energy exported to grid.'
-  },
-  {
-    id: 'rj',
-    name: 'Rajasthan',
-    discom: 'JVVNL / AVVNL / JdVVNL',
-    avgTariff: 7.8,
-    sunHours: 5.5,
-    stateSubsidyNote: 'Highest solar radiation state in India with up to 5.5 peak sun hours.'
-  },
-  {
-    id: 'hr',
-    name: 'Haryana',
-    discom: 'DHBVN / UHBVN',
-    avgTariff: 7.0,
-    sunHours: 4.7,
-    stateSubsidyNote: 'Haryana offers simple bi-directional net-metering protocol.'
-  },
-  {
-    id: 'br',
-    name: 'Bihar',
-    discom: 'NBPDCL / SBPDCL',
-    avgTariff: 7.3,
+    id: 'uk',
+    name: 'Uttarakhand',
+    discom: 'UPCL',
+    avgTariff: 6.2,
     sunHours: 4.5,
-    stateSubsidyNote: 'BREDA facilitation for rural and semi-urban rooftop installations.'
+    stateSubsidyNote: 'UREDA online portal for hill and plain solar rooftop installations.'
   },
   {
-    id: 'mp',
-    name: 'Madhya Pradesh',
-    discom: 'MPPKVVCL (East / West / Central)',
-    avgTariff: 7.5,
-    sunHours: 4.9,
-    stateSubsidyNote: 'MP Urja Vikas Nigam offers streamlined subsidy processing.'
-  },
-  {
-    id: 'kl',
-    name: 'Kerala',
-    discom: 'KSEB',
-    avgTariff: 7.0,
-    sunHours: 4.3,
-    stateSubsidyNote: 'KSEB Soura scheme integration with PM Surya Ghar.'
-  },
-  {
-    id: 'tg-ap',
-    name: 'Telangana & Andhra Pradesh',
-    discom: 'TSSPDCL / TSNPDCL / APEPDCL / APSPDCL',
-    avgTariff: 7.3,
-    sunHours: 4.8,
-    stateSubsidyNote: 'Net metering available with seamless online portal applications.'
-  },
-  {
-    id: 'pb',
-    name: 'Punjab',
-    discom: 'PSPCL',
-    avgTariff: 6.9,
-    sunHours: 4.7,
-    stateSubsidyNote: 'Net-metering available for domestic connections.'
+    id: 'wb',
+    name: 'West Bengal',
+    discom: 'WBSEDCL / CESC',
+    avgTariff: 7.6,
+    sunHours: 4.4,
+    stateSubsidyNote: 'Net metering available for 1kW+ connected loads.'
   }
 ];
 
