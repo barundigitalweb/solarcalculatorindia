@@ -65,6 +65,27 @@ const orgSchema = {
   }
 };
 
+// Dynamic Breadcrumb Schema for Google SERP Snippets
+const isNotHome = Astro.url.pathname !== '/' && Astro.url.pathname !== '';
+const breadcrumbSchema = isNotHome ? {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": siteUrl
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": title.split(' - ')[0].replace(/2026/g, '').trim(),
+      "item": canonicalUrl
+    }
+  ]
+} : null;
+
 // FAQ Schema if provided
 const faqSchema = faqList.length > 0 ? {
   "@context": "https://schema.org",
@@ -135,6 +156,9 @@ const faqSchema = faqList.length > 0 ? {
     <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(webAppSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+    {breadcrumbSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    )}
     {faqSchema && (
       <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
     )}
