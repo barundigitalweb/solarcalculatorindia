@@ -171,11 +171,19 @@ export const INDIAN_STATES: StateDiscom[] = [
   },
   {
     id: 'wb',
-    name: 'West Bengal',
-    discom: 'WBSEDCL / CESC',
-    avgTariff: 7.6,
+    name: 'West Bengal (WBSEDCL Rural/Districts)',
+    discom: 'WBSEDCL',
+    avgTariff: 6.4,
     sunHours: 4.4,
-    stateSubsidyNote: 'Net metering available for 1kW+ connected loads.'
+    stateSubsidyNote: 'WBSEDCL district and rural domestic slabs average ~₹5.50–₹6.80/unit. Net metering available for 1kW+.'
+  },
+  {
+    id: 'wb-cesc',
+    name: 'West Bengal (CESC Kolkata/Urban)',
+    discom: 'CESC',
+    avgTariff: 8.2,
+    sunHours: 4.4,
+    stateSubsidyNote: 'CESC Kolkata higher domestic slabs average ~₹7.80–₹9.20/unit.'
   }
 ];
 
