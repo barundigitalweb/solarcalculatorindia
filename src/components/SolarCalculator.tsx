@@ -310,7 +310,7 @@ export default function SolarCalculator({
                         max="25"
                         value={effectiveTariff}
                         onChange={(e) => setCustomTariff(Number(e.target.value))}
-                        className="w-16 bg-emerald-950 text-white font-bold px-1.5 py-0.5 rounded border border-emerald-400 text-xs focus:outline-none"
+                        className="w-16 bg-emerald-950 text-white font-bold px-1.5 py-0.5 rounded border border-emerald-400 text-base sm:text-xs focus:outline-none"
                       />
                       <span className="text-emerald-300 text-xs">/unit</span>
                       <button
@@ -460,7 +460,7 @@ export default function SolarCalculator({
                   step="250"
                   value={monthlyBill}
                   onChange={(e) => setMonthlyBill(Number(e.target.value))}
-                  className="w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-600"
+                  className="w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-600 touch-pan-y"
                 />
                 <div className="flex justify-between text-xs text-slate-500 mt-1.5 font-medium">
                   <span>₹500 / month</span>
@@ -501,7 +501,7 @@ export default function SolarCalculator({
                   step="0.5"
                   value={capacity}
                   onChange={(e) => setCapacity(Number(e.target.value))}
-                  className="w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-600"
+                  className="w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-600 touch-pan-y"
                 />
                 <div className="flex justify-between text-xs text-slate-500 mt-1.5 font-medium">
                   <span>1 kW (Small Home)</span>
@@ -545,7 +545,7 @@ export default function SolarCalculator({
                   step="25"
                   value={monthlyUnits}
                   onChange={(e) => setMonthlyUnits(Number(e.target.value))}
-                  className="w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-600"
+                  className="w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-600 touch-pan-y"
                 />
                 <div className="flex justify-between text-xs text-slate-500 mt-1.5 font-medium">
                   <span>50 units</span>
@@ -571,7 +571,7 @@ export default function SolarCalculator({
                   step="50"
                   value={roofArea}
                   onChange={(e) => setRoofArea(Number(e.target.value))}
-                  className="w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-600"
+                  className="w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-600 touch-pan-y"
                 />
                 <div className="flex justify-between text-xs text-slate-500 mt-1.5 font-medium">
                   <span>100 sq ft (~1kW)</span>
@@ -787,7 +787,7 @@ export default function SolarCalculator({
                       placeholder="e.g. Rahul Sharma"
                       value={leadForm.name}
                       onChange={(e) => setLeadForm({ ...leadForm, name: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
                     />
                   </div>
 
@@ -801,7 +801,7 @@ export default function SolarCalculator({
                       placeholder="e.g. 9876543210"
                       value={leadForm.phone}
                       onChange={(e) => setLeadForm({ ...leadForm, phone: e.target.value.replace(/\D/g, '') })}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
                     />
                   </div>
 
@@ -815,7 +815,7 @@ export default function SolarCalculator({
                         placeholder="e.g. Kolkata / Pune"
                         value={leadForm.city}
                         onChange={(e) => setLeadForm({ ...leadForm, city: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
                       />
                     </div>
                     <div>
@@ -828,7 +828,7 @@ export default function SolarCalculator({
                         placeholder="e.g. 700001"
                         value={leadForm.pincode}
                         onChange={(e) => setLeadForm({ ...leadForm, pincode: e.target.value.replace(/\D/g, '') })}
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
                       />
                     </div>
                   </div>
