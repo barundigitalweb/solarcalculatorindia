@@ -14,7 +14,8 @@ import {
   Building2,
   BadgePercent,
   Sparkles,
-  PhoneCall
+  PhoneCall,
+  ExternalLink
 } from 'lucide-react';
 import { INDIAN_STATES, computeSolarMetrics, type SolarCalculationResult } from '../data/solarData';
 
@@ -216,19 +217,18 @@ export default function SolarCalculator({
       localStorage.setItem('solar_leads', JSON.stringify(existing));
     } catch {}
 
-    // Dispatch to Webhook if configured (via window or environment variable)
+    // Dispatch to Telegram API endpoint (/api/lead) and optional webhook
     try {
       const webhookUrl = (typeof window !== 'undefined' && (window as any).SOLAR_LEAD_WEBHOOK_URL) ||
-        (import.meta as any).env?.PUBLIC_LEAD_WEBHOOK_URL;
-      if (webhookUrl) {
-        await fetch(webhookUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(leadPayload)
-        });
-      }
+        (import.meta as any).env?.PUBLIC_LEAD_WEBHOOK_URL ||
+        '/api/lead';
+      await fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(leadPayload)
+      });
     } catch (err) {
-      console.warn('Webhook dispatch failed or not configured, stored in localStorage:', err);
+      console.warn('Lead dispatch failed or offline, stored in localStorage:', err);
     } finally {
       setIsSubmittingLead(false);
       setLeadSubmitted(true);
@@ -854,19 +854,40 @@ export default function SolarCalculator({
                 </form>
               </div>
             ) : (
-              <div className="text-center py-6">
-                <CheckCircle2 className="w-16 h-16 text-emerald-600 mx-auto mb-3" />
+              <div className="text-center py-5">
+                <CheckCircle2 className="w-14 h-14 text-emerald-600 mx-auto mb-2" />
                 <h3 className="text-xl font-bold text-slate-900 mb-1">Thank You, {leadForm.name}!</h3>
-                <p className="text-xs text-slate-600 mb-4 max-w-xs mx-auto">
-                  Your feasibility details for a <strong>{metrics.systemSizeKw} kW setup</strong> in {leadForm.city || currentState.name} have been noted. Verified local solar partners will contact you shortly with transparent quotes.
+                <p className="text-xs text-slate-600 mb-4 max-w-xs mx-auto leading-relaxed">
+                  Your feasibility details for a <strong>{metrics.systemSizeKw} kW setup</strong> in {leadForm.city || currentState.name} have been received. Verified local solar installers will reach out shortly with transparent quotes.
                 </p>
+
+                {/* Hybrid Funnel: Affiliate / Official Partner Referral Box */}
+                <div className="bg-amber-50 border border-amber-200/80 rounded-2xl p-3.5 mb-4 text-left">
+                  <div className="flex items-center gap-1.5 text-amber-900 font-bold text-xs mb-1">
+                    <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+                    <span>Want to fast-track your rooftop solar?</span>
+                  </div>
+                  <p className="text-[11px] text-amber-800 mb-2.5 leading-snug">
+                    You can also register your rooftop directly on the National Portal or explore certified tier-1 solar kits.
+                  </p>
+                  <a
+                    href="https://pmsuryaghar.gov.in/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-2.5 px-3 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-sm transition-all"
+                  >
+                    <span>Visit Official PM Surya Ghar Portal</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+
                 <button
                   type="button"
                   aria-label="Close modal"
                   onClick={() => { setShowLeadModal(false); setLeadSubmitted(false); }}
-                  className="px-6 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl text-xs"
+                  className="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl text-xs transition-colors"
                 >
-                  Close
+                  Done
                 </button>
               </div>
             )}
