@@ -14,8 +14,7 @@ import {
   Building2,
   BadgePercent,
   Sparkles,
-  PhoneCall,
-  ExternalLink
+  PhoneCall
 } from 'lucide-react';
 import { INDIAN_STATES, computeSolarMetrics, type SolarCalculationResult } from '../data/solarData';
 
@@ -854,38 +853,17 @@ export default function SolarCalculator({
                 </form>
               </div>
             ) : (
-              <div className="text-center py-5">
-                <CheckCircle2 className="w-14 h-14 text-emerald-600 mx-auto mb-2" />
+              <div className="text-center py-6">
+                <CheckCircle2 className="w-16 h-16 text-emerald-600 mx-auto mb-3" />
                 <h3 className="text-xl font-bold text-slate-900 mb-1">Thank You, {leadForm.name}!</h3>
-                <p className="text-xs text-slate-600 mb-4 max-w-xs mx-auto leading-relaxed">
+                <p className="text-xs text-slate-600 mb-6 max-w-xs mx-auto leading-relaxed">
                   Your feasibility details for a <strong>{metrics.systemSizeKw} kW setup</strong> in {leadForm.city || currentState.name} have been received. Verified local solar installers will reach out shortly with transparent quotes.
                 </p>
-
-                {/* Hybrid Funnel: Affiliate / Official Partner Referral Box */}
-                <div className="bg-amber-50 border border-amber-200/80 rounded-2xl p-3.5 mb-4 text-left">
-                  <div className="flex items-center gap-1.5 text-amber-900 font-bold text-xs mb-1">
-                    <Sparkles className="w-3.5 h-3.5 text-amber-600" />
-                    <span>Want to fast-track your rooftop solar?</span>
-                  </div>
-                  <p className="text-[11px] text-amber-800 mb-2.5 leading-snug">
-                    You can also register your rooftop directly on the National Portal or explore certified tier-1 solar kits.
-                  </p>
-                  <a
-                    href="https://pmsuryaghar.gov.in/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full py-2.5 px-3 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-sm transition-all"
-                  >
-                    <span>Visit Official PM Surya Ghar Portal</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
-                </div>
-
                 <button
                   type="button"
                   aria-label="Close modal"
                   onClick={() => { setShowLeadModal(false); setLeadSubmitted(false); }}
-                  className="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl text-xs transition-colors"
+                  className="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-sm shadow-md shadow-emerald-600/20 transition-all cursor-pointer"
                 >
                   Done
                 </button>
