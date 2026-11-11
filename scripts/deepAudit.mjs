@@ -1,94 +1,160 @@
 import fs from 'node:fs';
-import path from 'node:path';
-import { computeSolarMetrics, INDIAN_STATES } from '../src/data/solarData.js';
 
-const distDir = './dist';
-const pages = fs.readdirSync(distDir).filter(f => fs.statSync(path.join(distDir, f)).isDirectory() || f.endsWith('.html'));
+async function audit() {
+  const urls = [
+    'https://solarcalculatorindia.com/',
+    'https://solarcalculatorindia.com/1kw-solar-panel-cost-calculator/',
+    'https://solarcalculatorindia.com/2kw-solar-panel-cost-calculator/',
+    'https://solarcalculatorindia.com/3kw-solar-panel-cost-calculator/',
+    'https://solarcalculatorindia.com/pm-surya-ghar-subsidy-calculator/',
+    'https://solarcalculatorindia.com/sbi-solar-loan-emi-calculator/',
+    'https://solarcalculatorindia.com/solar-calculator-maharashtra/',
+    'https://solarcalculatorindia.com/solar-calculator-uttar-pradesh/',
+    'https://solarcalculatorindia.com/solar-calculator-gujarat/',
+    'https://solarcalculatorindia.com/solar-calculator-rajasthan/',
+    'https://solarcalculatorindia.com/solar-calculator-karnataka/',
+    'https://solarcalculatorindia.com/solar-calculator-west-bengal/',
+    'https://solarcalculatorindia.com/solar-calculator-delhi/',
+    'https://solarcalculatorindia.com/about-us/',
+    'https://solarcalculatorindia.com/contact-us/',
+    'https://solarcalculatorindia.com/privacy-policy/',
+    'https://solarcalculatorindia.com/terms-of-service/',
+    'https://solarcalculatorindia.com/sitemap.xml',
+    'https://solarcalculatorindia.com/robots.txt',
+    'https://solarcalculatorindia.com/llms.txt',
+    'https://solarcalculatorindia.com/og-image.png',
+    'https://solarcalculatorindia.com/favicon.svg'
+  ];
 
-console.log('--- 3. JSON-LD STRUCTURED DATA CHECK ---');
-let jsonLdCount = 0;
-for (const p of pages) {
-  const filePath = p.endsWith('.html') ? path.join(distDir, p) : path.join(distDir, p, 'index.html');
-  if (!fs.existsSync(filePath)) continue;
-  const content = fs.readFileSync(filePath, 'utf8');
+  console.log('====================================================');
+  console.log('   DEEP PRODUCTION AUDIT: SOLARCALCULATORINDIA.COM   ');
+  console.log('====================================================');
 
-  const matches = content.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g);
-  for (const m of matches) {
-    jsonLdCount++;
+  let issueCount = 0;
+  const pageResults = [];
+
+  for (const url of urls) {
     try {
-      const parsed = JSON.parse(m[1]);
-      if (!parsed['@context'] || !parsed['@type']) {
-        console.log(`⚠️ Invalid JSON-LD missing @context or @type in ${p}`);
+      const res = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' } });
+      const status = res.status;
+
+      if (status !== 200) {
+        console.error(`❌ HTTP ${status}: ${url}`);
+        issueCount++;
+        continue;
       }
-    } catch (e) {
-      console.log(`❌ SYNTAX ERROR in JSON-LD in ${p}:`, e.message);
+
+      const text = await res.text();
+
+      if (url.endsWith('.xml') || url.endsWith('.txt') || url.endsWith('.png') || url.endsWith('.svg')) {
+        const ct = res.headers.get('content-type');
+        console.log(`✅ [${status}] ASSET: ${url.replace('https://solarcalculatorindia.com', '')} (${ct}, ${text.length} bytes)`);
+        continue;
+      }
+
+      // Check Title
+      const titleMatch = text.match(/<title>([^<]*)<\/title>/i);
+      const title = titleMatch ? titleMatch[1].trim() : '';
+      const titleLen = title.length;
+
+      // Check Meta Description
+      const descMatch = text.match(/<meta\s+name=["']description["']\s+content="([^"]*)"/i) || text.match(/<meta\s+name=["']description["']\s+content='([^']*)'/i);
+      const desc = descMatch ? descMatch[1].trim() : '';
+      const descLen = desc.length;
+
+      // Check Canonical
+      const canMatch = text.match(/<link\s+rel=["']canonical["']\s+href=["']([^"']*)["']/i);
+      const canonical = canMatch ? canMatch[1].trim() : '';
+
+      // Check GTM
+      const hasGTMHead = text.includes('GTM-MCCTJNKT');
+      const hasGTMBody = text.includes('ns.html?id=GTM-MCCTJNKT');
+
+      // Check OpenGraph
+      const ogTitleMatch = text.match(/<meta\s+property=["']og:title["']\s+content=["']([^"']*)["']/i);
+      const ogImageMatch = text.match(/<meta\s+property=["']og:image["']\s+content=["']([^"']*)["']/i);
+
+      // Check Viewport
+      const hasViewport = text.includes('name="viewport"') || text.includes("name='viewport'");
+
+      // JSON-LD schemas
+      const jsonLdMatches = [...text.matchAll(/<script\s+type=["']application\/ld\+json["']>([\s\S]*?)<\/script>/gi)];
+
+      const issues = [];
+      if (!title) issues.push('Missing Title');
+      else if (titleLen < 30 || titleLen > 65) issues.push(`Title length ${titleLen}c`);
+      
+      if (!desc) issues.push('Missing Desc');
+      else if (descLen < 120 || descLen > 165) issues.push(`Desc length ${descLen}c`);
+
+      if (canonical !== url) issues.push(`Canonical mismatch: got "${canonical}"`);
+      if (!hasGTMHead || !hasGTMBody) issues.push(`Missing GTM`);
+      if (!ogTitleMatch) issues.push(`Missing og:title`);
+      if (!ogImageMatch || !ogImageMatch[1].includes('og-image.png')) issues.push(`Missing or non-png og:image`);
+      if (!hasViewport) issues.push(`Missing viewport`);
+      if (jsonLdMatches.length === 0) issues.push(`Missing JSON-LD schema`);
+
+      const pathStr = url.replace('https://solarcalculatorindia.com', '') || '/';
+      if (issues.length > 0) {
+        console.warn(`⚠️ [${status}] ${pathStr} -> ${issues.join('; ')}`);
+        issueCount += issues.length;
+      } else {
+        console.log(`✅ [${status}] ${pathStr.padEnd(35)} | Title: "${title.substring(0, 32)}..." (${titleLen}c) | Desc: (${descLen}c) | Schemas: ${jsonLdMatches.length} | GTM: OK`);
+      }
+
+      pageResults.push({ path: pathStr, title, titleLen, desc, descLen, canonical, schemas: jsonLdMatches.length });
+    } catch (err) {
+      console.error(`❌ ERROR fetching ${url}: ${err.message}`);
+      issueCount++;
     }
   }
-}
-console.log(`✅ Verified ${jsonLdCount} JSON-LD schemas across all pages with 0 syntax errors!`);
 
-console.log('\n--- 4. TABLE RESPONSIVENESS (MOBILE OVERFLOW) CHECK ---');
-for (const p of pages) {
-  const filePath = p.endsWith('.html') ? path.join(distDir, p) : path.join(distDir, p, 'index.html');
-  if (!fs.existsSync(filePath)) continue;
-  const content = fs.readFileSync(filePath, 'utf8');
+  // Check Internal Navigation Links on Homepage
+  console.log('\n--- AUDITING HOMEPAGE INTERNAL LINKS ---');
+  try {
+    const homeRes = await fetch('https://solarcalculatorindia.com/');
+    const homeHtml = await homeRes.text();
+    const hrefMatches = [...homeHtml.matchAll(/href=["'](\/[^"']*)["']/gi)].map(m => m[1]);
+    const uniqueHrefs = [...new Set(hrefMatches)].filter(h => !h.startsWith('/#') && !h.startsWith('/api'));
+    console.log(`Found ${uniqueHrefs.length} unique internal links on homepage:`);
+    for (const href of uniqueHrefs) {
+      const fullLink = 'https://solarcalculatorindia.com' + href;
+      const linkRes = await fetch(fullLink);
+      if (linkRes.status === 200) {
+        console.log(`  ✅ [200] ${href}`);
+      } else {
+        console.warn(`  ❌ [${linkRes.status}] ${href} (BROKEN LINK)`);
+        issueCount++;
+      }
+    }
+  } catch (e) {
+    console.error('Homepage link check error:', e.message);
+  }
 
-  if (content.includes('<table')) {
-    // Check if table is wrapped in an overflow container
-    const isWrapped = content.includes('overflow-x-auto') || content.includes('overflow-auto');
-    if (!isWrapped) {
-      console.log(`⚠️ Unwrapped <table> detected in ${p} - might cause mobile overflow!`);
+  // Audit Lead API with real payload
+  console.log('\n--- TESTING /api/lead PRODUCTION ENDPOINT ---');
+  try {
+    const optRes = await fetch('https://solarcalculatorindia.com/api/lead', { method: 'OPTIONS' });
+    console.log(`OPTIONS /api/lead: HTTP ${optRes.status} (CORS headers: ${optRes.headers.get('access-control-allow-origin') || 'none'})`);
+
+    const badPost = await fetch('https://solarcalculatorindia.com/api/lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phone: '123' }) // Invalid phone to test rejection
+    });
+    const badJson = await badPost.json();
+    if (badPost.status === 400) {
+      console.log(`✅ Validation guard test passed: Rejected invalid phone with 400: "${badJson.error}"`);
     } else {
-      console.log(`  ✓ Table in ${p} is safely wrapped with overflow-x-auto.`);
+      console.warn(`⚠️ Expected 400 for bad input, got ${badPost.status}`);
     }
+  } catch (e) {
+    console.error('API test failed:', e.message);
   }
+
+  console.log(`\n====================================================`);
+  console.log(`   AUDIT FINISHED with ${issueCount} warnings/issues`);
+  console.log(`====================================================\n`);
 }
 
-console.log('\n--- 5. CALCULATION ENGINE EDGE CASE STRESS TEST ---');
-const testCases = [
-  { mode: 'bill', val: 500, state: 'national', tariff: 7.5 },
-  { mode: 'bill', val: 2500, state: 'west-bengal-wbsedcl', tariff: 6.4 },
-  { mode: 'bill', val: 15000, state: 'maharashtra-mumbai', tariff: 11.2 },
-  { mode: 'capacity', val: 1, state: 'national', tariff: 7.5 },
-  { mode: 'capacity', val: 2, state: 'national', tariff: 7.5 },
-  { mode: 'capacity', val: 3, state: 'national', tariff: 7.5 },
-  { mode: 'capacity', val: 10, state: 'national', tariff: 7.5 },
-  { mode: 'units', val: 100, state: 'delhi', tariff: 8.0 },
-  { mode: 'units', val: 300, state: 'delhi', tariff: 8.0 },
-  { mode: 'units', val: 1000, state: 'rajasthan', tariff: 7.5 },
-  { mode: 'area', val: 100, state: 'national', tariff: 7.5 },
-  { mode: 'area', val: 300, state: 'national', tariff: 7.5 },
-  { mode: 'area', val: 1500, state: 'national', tariff: 7.5 },
-];
-
-let mathErrors = 0;
-for (const tc of testCases) {
-  const res = computeSolarMetrics(tc.mode, tc.val, tc.state, tc.tariff);
-  // Verify no NaN or Infinity
-  for (const [key, val] of Object.entries(res)) {
-    if (typeof val === 'number' && (isNaN(val) || !isFinite(val))) {
-      console.log(`❌ NaN/Infinity in ${tc.mode} (${tc.val}) -> ${key}: ${val}`);
-      mathErrors++;
-    }
-  }
-  // Verify subsidy rules
-  if (res.systemSizeKw <= 1 && res.totalSubsidy > 30000) {
-    console.log(`❌ 1kW subsidy exceeds ₹30,000: ₹${res.totalSubsidy}`);
-    mathErrors++;
-  }
-  if (res.systemSizeKw <= 2 && res.totalSubsidy > 60000) {
-    console.log(`❌ 2kW subsidy exceeds ₹60,000: ₹${res.totalSubsidy}`);
-    mathErrors++;
-  }
-  if (res.totalSubsidy > 78000) {
-    console.log(`❌ Subsidy exceeds max cap ₹78,000: ₹${res.totalSubsidy}`);
-    mathErrors++;
-  }
-  if (res.paybackPeriodYears < 0 || res.paybackPeriodYears > 25) {
-    console.log(`⚠️ Unusual payback period: ${res.paybackPeriodYears} years`);
-  }
-}
-
-if (mathErrors === 0) {
-  console.log(`✅ All ${testCases.length} stress test calculation scenarios passed with 100% mathematical validity!`);
-}
+audit();
